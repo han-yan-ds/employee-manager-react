@@ -1,3 +1,5 @@
+import { EmployeeType } from './Employee';
+
 export type Action = {
   type: string;
   value: unknown;
@@ -15,3 +17,7 @@ export type Name = {
   mInitial: string | null;
 }
 
+export type State = {
+  employeeList: EmployeeType[];
+  isLoggedIn: boolean;
+}

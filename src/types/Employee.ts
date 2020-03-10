@@ -1,7 +1,9 @@
 import {Name, Date} from './types';
 import {v4 as uuidv4} from 'uuid';
 
-export class Employee {
+export type EmployeeType = typeof Employee;
+
+export default class Employee {
 
   /**
    * SHORT GUIDE:
