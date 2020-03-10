@@ -1,4 +1,4 @@
-import {Action} from '../actions/actions';
+import {Action} from '../types/interfaces';
 
 export function reducer1(defValue = 1, action: Action) {
   switch (action.type) {
