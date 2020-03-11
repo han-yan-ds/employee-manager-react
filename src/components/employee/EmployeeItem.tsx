@@ -3,7 +3,7 @@ import Employee from '../../types/Employee';
 
 const EmployeeItem = ({employee}: {employee: Employee}) => (
   <li>
-    {employee.nameString}
+    <span>{`${employee.nameString} ${employee.isActive}`}</span>
   </li>
 )
 

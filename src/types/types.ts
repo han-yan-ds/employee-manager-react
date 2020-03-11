@@ -21,3 +21,5 @@ export type State = {
   employeeList: Employee[];
   isLoggedIn: boolean;
 }
+
+export type ClickHandler = (e: React.MouseEvent) => void;

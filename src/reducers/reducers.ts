@@ -13,7 +13,9 @@ export function employeeListReducer(defValue = defaultEmployeeList, action: Acti
 
 export function isLoggedInReducer(defValue = defaultIsLoggedIn, action: Action): boolean {
   switch (action.type) {
-    case 'LOG IN OR OUT':
+    case 'LOG_IN':
+      return action.value;
+    case 'LOG_OUT':
       return action.value;
     default:
       return defValue;
