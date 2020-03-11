@@ -18,12 +18,5 @@ const JOVI = new Employee(
   {day: 1, month: 12, year: 2019}
 )
 
-export const employeeList = [HAN, JAS, JOVI];
-export let isLoggedIn = true;
-
-// const initialState = {
-//   employeeList,
-//   isLoggedIn
-// }
-
-// export default initialState;
+export const defaultEmployeeList = [HAN, JAS, JOVI];
+export let defaultIsLoggedIn = true;
