@@ -1,8 +1,6 @@
 import {Name, Date} from './types';
 import {v4 as uuidv4} from 'uuid';
 
-export type EmployeeType = typeof Employee;
-
 export default class Employee {
 
   /**
@@ -16,7 +14,7 @@ export default class Employee {
    * Getting ID:  Employee.id
    */
 
-  private employeeId: string;
+  private readonly employeeId: string;
 
   constructor(
     private employeeName: Name, 

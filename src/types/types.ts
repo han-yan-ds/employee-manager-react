@@ -1,8 +1,8 @@
-import { EmployeeType } from './Employee';
+import Employee from './Employee';
 
 export type Action = {
   type: string;
-  value: unknown;
+  value: any;
 }
 
 export type Date = {
@@ -18,6 +18,6 @@ export type Name = {
 }
 
 export type State = {
-  employeeList: EmployeeType[];
+  employeeList: Employee[];
   isLoggedIn: boolean;
 }

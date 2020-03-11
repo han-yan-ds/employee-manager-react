@@ -1,10 +1,12 @@
 import React from 'react';
-import logo from '../../static/logo.svg';
-import '../../styles/App.css';
+import EmployeeList from '../employee/EmployeeList';
+// import logo from '../../static/logo.svg';
+// import '../../styles/App.css';
 
 const App = () => (
   <div className="App">
-    <header className="App-header">
+    <EmployeeList/>
+    {/* <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
@@ -17,7 +19,7 @@ const App = () => (
       >
         Learn React
       </a>
-    </header>
+    </header> */}
   </div>
 );
 
