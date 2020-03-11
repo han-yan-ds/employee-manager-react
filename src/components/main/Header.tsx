@@ -10,8 +10,8 @@ function mapStateToProps(st: State) {
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-    handleLogOut: () => dispatch(logOut),
-    handleLogIn: () => dispatch(logIn)
+    handleLogOut: () => dispatch(logOut()),
+    handleLogIn: () => dispatch(logIn())
   }
 }
 
