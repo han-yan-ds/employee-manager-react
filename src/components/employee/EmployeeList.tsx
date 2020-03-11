@@ -12,16 +12,8 @@ function mapStateToProps(st: State) {
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-    handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeList(changeStatus(employeeList, employeeId))),
+    handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeList(employeeList, employeeId)),
   }
-}
-
-const changeStatus = (employeeList: Employee[], employeeId: string): Employee[] => {
-  const employeeListClone = [...employeeList];
-  const targetEmployee: Employee = employeeListClone.find((employee) => employee.id === employeeId)!;
-  targetEmployee.toggleActive();
-  console.log(targetEmployee.isActive);
-  return employeeListClone;
 }
 
 const EmployeeList = ({employeeList, handleChangeStatus}: {employeeList: Employee[], handleChangeStatus: Function}) => {
