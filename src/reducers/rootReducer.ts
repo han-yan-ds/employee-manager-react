@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
-import {reducer1} from './reducers';
+import {employeeListReducer, isLoggedInReducer} from './reducers';
 
 export default combineReducers({
-  reducer1,
+  employeeList: employeeListReducer,
+  isLoggedIn: isLoggedInReducer
 });
