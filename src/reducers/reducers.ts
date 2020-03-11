@@ -4,7 +4,7 @@ import {defaultEmployeeList, defaultIsLoggedIn} from '../util/initialState';
 
 export function employeeListReducer(defValue = defaultEmployeeList, action: Action): Employee[] {
   switch (action.type) {
-    case 'DO_SOMETHING_EMPLOYEE':
+    case 'CHANGE_EMPLOYEE_LIST':
       return action.value;
     default:
       return defValue;

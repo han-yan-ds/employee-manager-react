@@ -63,4 +63,12 @@ export default class Employee {
   set isActive(active: boolean) {
     this.employeeIsActive = active;
   }
+
+  toggleActive() {
+    if (this.employeeIsActive) {
+      this.employeeIsActive = false;
+    } else {
+      this.employeeIsActive = true;
+    }
+  }
 }

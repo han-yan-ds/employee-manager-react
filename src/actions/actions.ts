@@ -1,9 +1,10 @@
 import {Action} from '../types/types';
+import Employee from '../types/Employee';
 
-export function activateEmployee(employeeId: string): Action {
+export function changeEmployeeList(employeeList: Employee[]): Action {
   return {
-    type: 'ACTIVATE_EMPLOYEE',
-    value: employeeId
+    type: 'CHANGE_EMPLOYEE_LIST',
+    value: employeeList
   }
 }
 
