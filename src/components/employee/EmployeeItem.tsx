@@ -1,7 +1,9 @@
 import React from 'react';
 import Employee from '../../types/Employee';
 
-const EmployeeItem = (props: {employee: Employee, handleChangeStatus: Function}) => (
+const EmployeeItem = (props: {
+  employee: Employee, handleChangeStatus: Function, handleShowProfileForm: Function
+}) => (
   <li>
     <span>{`${props.employee.nameString} ${props.employee.isActive}`}</span>
 
@@ -9,7 +11,7 @@ const EmployeeItem = (props: {employee: Employee, handleChangeStatus: Function})
       Update Active/Inactive
     </button>
 
-    <button>Profile</button>
+    <button onClick={() => props.handleShowProfileForm()}>Profile</button>
   </li>
 )
 

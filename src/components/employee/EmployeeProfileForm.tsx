@@ -1,9 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
 import {convertDateToHtmlInput} from '../../util/util';
+import {hideProfileModal} from '../../actions/actions';
 
-const EmployeeProfileForm = ({employee}: {employee: Employee}) => {
+function mapDispatchToProps(dispatch: Function) {
+  return {
+    cancelModal: () => dispatch(hideProfileModal())
+  }
+}
 
+const EmployeeProfileForm = (
+  {employee, cancelModal}: 
+  {employee: Employee, cancelModal: Function}
+) => {
   const {name, dateOfBirth, dateOfEmployment} = employee;
 
   return <div className='modal'>
@@ -14,8 +24,9 @@ const EmployeeProfileForm = ({employee}: {employee: Employee}) => {
       <input type='date' name='dateOfBirth' value={convertDateToHtmlInput(dateOfBirth)}/>
       <input type='date' name='dateOfEmployment' value={convertDateToHtmlInput(dateOfEmployment)}/>
     </form>
+    <button onClick={() => cancelModal()}>X</button>
   </div>
 
 }
 
-export default EmployeeProfileForm;
+export default connect(null, mapDispatchToProps)(EmployeeProfileForm);
