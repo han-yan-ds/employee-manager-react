@@ -34,7 +34,7 @@ export default class Employee {
 
   get nameString() {
     if (this.employeeName.mInitial) {
-      return `${this.employeeName.fName} ${this.employeeName.mInitial} ${this.employeeName.lName}`;
+      return `${this.employeeName.fName} ${this.employeeName.mInitial}. ${this.employeeName.lName}`;
     } else {
       return `${this.employeeName.fName} ${this.employeeName.lName}`;
     }
