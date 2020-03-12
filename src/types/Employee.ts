@@ -34,10 +34,14 @@ export default class Employee {
 
   get nameString() {
     if (this.employeeName.mInitial) {
-      return `${this.employeeName.fName} ${this.employeeName.mInitial} ${this.employeeName.lName}`;
+      return `${this.employeeName.fName} ${this.employeeName.mInitial}. ${this.employeeName.lName}`;
     } else {
       return `${this.employeeName.fName} ${this.employeeName.lName}`;
     }
+  }
+
+  set name(newName: Name) {
+    this.employeeName = newName;
   }
 
   // get dateOfBirth() {
@@ -62,5 +66,13 @@ export default class Employee {
 
   set isActive(active: boolean) {
     this.employeeIsActive = active;
+  }
+
+  toggleActive() {
+    if (this.employeeIsActive) {
+      this.employeeIsActive = false;
+    } else {
+      this.employeeIsActive = true;
+    }
   }
 }
