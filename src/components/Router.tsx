@@ -1,34 +1,28 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import App from './pages/App';
 import Login from './pages/Login';
-import Logout from './pages/Logout';
+import {State} from '../types/types';
 
-const Router = () => (
+function mapStateToProps(state: State) {
+  const isLoggedIn = state.isLoggedIn;
+  return {isLoggedIn};
+}
+
+const Router = (state: State) => (
   <main>
     <Switch>
-      <Route
-        exact
-        path='/app'
-        component={App}
-      />
       <Route
         exact
         path='/login'
         component={Login}
       />
-      <Route
-        exact
-        path='/logout'
-        component={Logout}
-      />
-      {/* <Route
-        exact
-        path='/'
-        component={} // DEPENDS ON SESSION WHAT TO FORWARD TO
-      /> */}
+      <Route path='/'>
+        {(state.isLoggedIn) ? App : <Redirect to='/login'/>}
+      </Route>
     </Switch>
   </main>
 )
 
-export default Router;
+export default connect(mapStateToProps, null)(Router);
