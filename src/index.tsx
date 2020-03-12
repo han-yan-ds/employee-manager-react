@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
-import TopLevel from './components/main/TopLevel';
+import Router from './components/Router';
 import {Provider} from 'react-redux';
 import configureStore from './store';
 import {BrowserRouter} from 'react-router-dom';
@@ -10,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={configureStore()}>
-      <TopLevel />
+      <Router />
     </Provider>
   </BrowserRouter>, document.getElementById('root')
 );
