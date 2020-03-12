@@ -20,6 +20,7 @@ export type Name = {
 export type State = {
   employeeList: Employee[];
   isLoggedIn: boolean;
+  showProfileId: string | null;
 }
 
 export type ClickHandler = (e: React.MouseEvent) => void;

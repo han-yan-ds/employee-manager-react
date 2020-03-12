@@ -21,3 +21,14 @@ export function isLoggedInReducer(defValue = defaultIsLoggedIn, action: Action):
       return defValue;
   }
 }
+
+export function profileModalReducer(defValue = null, action: Action): string | null {
+  switch (action.type) {
+    case 'SHOW_PROFILE_MODAL':
+      return action.value;
+    case 'HIDE_PROFILE_MODAL':
+      return null;
+    default:
+      return defValue;
+  }
+}

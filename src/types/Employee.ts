@@ -28,9 +28,9 @@ export default class Employee {
     return this.employeeId;
   }
 
-  // get name() {
-  //   return this.employeeName;
-  // }
+  get name() {
+    return this.employeeName;
+  }
 
   get nameString() {
     if (this.employeeName.mInitial) {
@@ -44,17 +44,17 @@ export default class Employee {
     this.employeeName = newName;
   }
 
-  // get dateOfBirth() {
-  //   return this.employeeDob;
-  // }
+  get dateOfBirth() {
+    return this.employeeDob;
+  }
 
   get dateOfBirthString() {
     return `${this.employeeDob.month}/${this.employeeDob.day}/${this.employeeDob.year}`
   }
 
-  // get dateOfEmployment() {
-  //   return this.employeeDoe;
-  // }
+  get dateOfEmployment() {
+    return this.employeeDoe;
+  }
 
   get dateOfEmploymentString() {
     return `${this.employeeDoe.month}/${this.employeeDoe.day}/${this.employeeDoe.year}`

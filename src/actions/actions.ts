@@ -22,3 +22,17 @@ export function logIn(): Action {
     value: true
   }
 }
+
+export function showProfileModal(employeeId: string): Action {
+  return {
+    type: 'SHOW_PROFILE_MODAL',
+    value: employeeId
+  }
+}
+
+export function hideProfileModal(): Action {
+  return {
+    type: 'HIDE_PROFILE_MODAL',
+    value: null
+  }
+}
