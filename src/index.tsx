@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
 import TopLevel from './components/main/TopLevel';
 import {Provider} from 'react-redux';
 import configureStore from './store';
