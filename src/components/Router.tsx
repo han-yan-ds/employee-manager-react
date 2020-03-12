@@ -10,7 +10,7 @@ function mapStateToProps(state: State) {
   return {isLoggedIn};
 }
 
-const Router = (state: State) => (
+const Router = ({isLoggedIn}: {isLoggedIn: boolean}) => (
   <main>
     <Switch>
       <Route
@@ -19,7 +19,7 @@ const Router = (state: State) => (
         component={Login}
       />
       <Route path='/'>
-        {(state.isLoggedIn) ? App : <Redirect to='/login'/>}
+        {(isLoggedIn) ? App : <Redirect to='/login'/>}
       </Route>
     </Switch>
   </main>
