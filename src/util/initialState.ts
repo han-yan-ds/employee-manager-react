@@ -20,3 +20,4 @@ const JOVI = new Employee(
 
 export const defaultEmployeeList = [HAN, JAS, JOVI];
 export let defaultIsLoggedIn = true;
+export let showProfileId: string | null = null;
