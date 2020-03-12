@@ -40,6 +40,10 @@ export default class Employee {
     }
   }
 
+  set name(newName: Name) {
+    this.employeeName = newName;
+  }
+
   // get dateOfBirth() {
   //   return this.employeeDob;
   // }
