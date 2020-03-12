@@ -18,8 +18,13 @@ const Router = ({isLoggedIn}: {isLoggedIn: boolean}) => (
         path='/login'
         component={Login}
       />
+      <Route
+        exact
+        path='/app'
+        component={App}
+      />
       <Route path='/'>
-        {(isLoggedIn) ? App : <Redirect to='/login'/>}
+        {(isLoggedIn) ? <Redirect to='/app'/> : <Redirect to='/login'/>}
       </Route>
     </Switch>
   </main>
