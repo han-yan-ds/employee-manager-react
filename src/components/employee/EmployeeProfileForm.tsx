@@ -24,13 +24,13 @@ const EmployeeProfileForm = (
         type='text' 
         name='firstName' 
         required={true}
-        value={name.fName}
+        defaultValue={name.fName}
       />
       <label>Middle Initial</label>
       <input 
         type='text' 
         name='middleInitial' 
-        value={(name.mInitial) ? name.mInitial : ''}
+        defaultValue={(name.mInitial) ? name.mInitial : ''}
         size={1}
       />
       <label>Last Name<span className='required-asterisk'>*</span></label>
@@ -38,21 +38,21 @@ const EmployeeProfileForm = (
         type='text' 
         name='lastName'
         required={true}
-        value={name.lName}
+        defaultValue={name.lName}
       />
       <label>Date Of Birth<span className='required-asterisk'>*</span></label>
       <input 
         type='date' 
         name='dateOfBirth'
         required={true}
-        value={convertDateToHtmlInput(dateOfBirth)}
+        defaultValue={convertDateToHtmlInput(dateOfBirth)}
       />
       <label>Date Of Employment<span className='required-asterisk'>*</span></label>
       <input 
         type='date' 
         name='dateOfEmployment'
         required={true} 
-        value={convertDateToHtmlInput(dateOfEmployment)}
+        defaultValue={convertDateToHtmlInput(dateOfEmployment)}
       />
     </form>
     {/* cancel button */}
