@@ -14,7 +14,10 @@ function mapStateToProps(st: State) {
 
 const renderProfileForm = (employeeList: Employee[], showProfileId: string | null) => {
   if (showProfileId) {
-    return <EmployeeProfileForm employee={getEmployeeById(employeeList, showProfileId)}/>
+    return <EmployeeProfileForm 
+      employeeList={employeeList} 
+      employee={getEmployeeById(employeeList, showProfileId)}
+    />
   } else {
     return;
   }
@@ -22,7 +25,7 @@ const renderProfileForm = (employeeList: Employee[], showProfileId: string | nul
 
 const App = (
   {employeeList, showProfileId}: {employeeList: Employee[], showProfileId: string | null}
-) => (
+  ) => (
   <React.Fragment>
     <Header/>
     <EmployeeList/>

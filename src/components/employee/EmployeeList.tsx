@@ -20,7 +20,8 @@ function mapDispatchToProps(dispatch: Function) {
 const EmployeeList = (
   {employeeList, showProfileId, handleChangeStatus, handleShowProfileForm}: 
   {employeeList: Employee[], showProfileId: string | null; handleChangeStatus: Function, handleShowProfileForm: Function}
-) => {
+  ) => {
+
   if (employeeList) {
     return  <ul>
       {employeeList.map((employee) => 

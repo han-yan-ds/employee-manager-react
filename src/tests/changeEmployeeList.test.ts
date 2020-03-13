@@ -27,25 +27,25 @@ describe('Change EmployeeList functions should work properly', () => {
     })
   });
 
-  describe('ChangeName should work properly', () => {
-    it('should change name', () => {
-      let originalNameStr = firstEmployee.nameString;
-      changeName(employeeList, firstEmployee.id, 'Hanbo', 'Zhang');
-      expect(firstEmployee.nameString === originalNameStr).toBeFalsy;
-      changeName(employeeList, firstEmployee.id, 'Han', 'Yan'); // change back
-    }),
-    it('should change name properly from not having a middle initial to having one', () => {
-      expect(firstEmployee.nameString.split(' ')).toHaveLength(2);
-      changeName(employeeList, firstEmployee.id, 'Han', 'Yan', 'M');
-      expect(firstEmployee.nameString.split(' ')).toHaveLength(3);
-      changeName(employeeList, firstEmployee.id, 'Han', 'Yan'); // change back
-    }),
-    it('should change name properly from having a middle initial to not having one', () => {
-      expect(lastEmployee.nameString.split(' ')).toHaveLength(3);
-      changeName(employeeList, lastEmployee.id, 'Steve', 'Jovanelly');
-      expect(lastEmployee.nameString.split(' ')).toHaveLength(2);
-      changeName(employeeList, lastEmployee.id, 'Steve', 'Jovanelly', 'J'); // change back
-    })
-  })
+  // describe('ChangeName should work properly', () => {
+  //   it('should change name', () => {
+  //     let originalNameStr = firstEmployee.nameString;
+  //     changeName(employeeList, firstEmployee.id, 'Hanbo', 'Zhang');
+  //     expect(firstEmployee.nameString === originalNameStr).toBeFalsy;
+  //     changeName(employeeList, firstEmployee.id, 'Han', 'Yan'); // change back
+  //   }),
+  //   it('should change name properly from not having a middle initial to having one', () => {
+  //     expect(firstEmployee.nameString.split(' ')).toHaveLength(2);
+  //     changeName(employeeList, firstEmployee.id, 'Han', 'Yan', 'M');
+  //     expect(firstEmployee.nameString.split(' ')).toHaveLength(3);
+  //     changeName(employeeList, firstEmployee.id, 'Han', 'Yan'); // change back
+  //   }),
+  //   it('should change name properly from having a middle initial to not having one', () => {
+  //     expect(lastEmployee.nameString.split(' ')).toHaveLength(3);
+  //     changeName(employeeList, lastEmployee.id, 'Steve', 'Jovanelly');
+  //     expect(lastEmployee.nameString.split(' ')).toHaveLength(2);
+  //     changeName(employeeList, lastEmployee.id, 'Steve', 'Jovanelly', 'J'); // change back
+  //   })
+  // })
 
 })

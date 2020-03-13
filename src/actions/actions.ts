@@ -1,11 +1,24 @@
-import {Action} from '../types/types';
+import {Action, Name, Date} from '../types/types';
 import Employee from '../types/Employee';
-import {changeActiveStatus} from '../util/changeEmployeeList';
+import {changeActiveStatus, changeProfile} from '../util/changeEmployeeList';
 
 export function changeEmployeeList(employeeList: Employee[], employeeId: string): Action {
   return {
     type: 'CHANGE_EMPLOYEE_ACTIVE',
     value: changeActiveStatus(employeeList, employeeId),
+  }
+}
+
+export function updateEmployeeProfile(
+  employeeList: Employee[], 
+  employeeId: string, 
+  newName: Name, 
+  newDob: Date, 
+  newDoe: Date
+) {
+  return {
+    type: 'UPDATE_EMPLOYEE_PROFILE',
+    value: changeProfile(employeeList, employeeId, newName, newDob, newDoe)
   }
 }
 

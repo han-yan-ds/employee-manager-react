@@ -1,25 +1,45 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
-import {convertDateToHtmlInput, getInputValueById} from '../../util/util';
-import {hideProfileModal} from '../../actions/actions';
+import {Date, Name} from '../../types/types';
+import {convertDateToHtmlInput, convertDateStrToDate, getInputValueById} from '../../util/util';
+import {updateEmployeeProfile, hideProfileModal} from '../../actions/actions';
 import '../../styles/general.scss';
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-    cancelModal: () => dispatch(hideProfileModal())
+    cancelModal: () => dispatch(hideProfileModal()),
+    updateProfile: (
+      employeeList: Employee[], 
+      employeeId: string, 
+      newName: Name, 
+      newDob: Date, 
+      newDoe: Date
+      ) => dispatch(updateEmployeeProfile(employeeList, employeeId, newName, newDob, newDoe)),
   }
 }
 
 const EmployeeProfileForm = (
-  {employee, cancelModal}: 
-  {employee: Employee, cancelModal: Function}
-) => {
+  {employeeList, employee, cancelModal, updateProfile}: 
+  {employeeList: Employee[], employee: Employee, cancelModal: Function, updateProfile: Function}
+  ) => {
+
   const {name, dateOfBirth, dateOfEmployment} = employee;
 
   const submitHandler = (e: React.FormEvent) => {
+    /**
+     * This is what gets called when Save Changes gets called
+     */
     e.preventDefault();
-    console.log(getInputValueById('middle-initial-input')); // CURRENT PRINTS THE ENTIRE FORM OUT
+    const newDateOfBirth: Date = convertDateStrToDate(getInputValueById('date-of-birth-input'));
+    const newDateOfEmployment: Date = convertDateStrToDate(getInputValueById('date-of-employment-input'));
+    const newName: Name = {
+      fName: getInputValueById('first-name-input'),
+      lName: getInputValueById('last-name-input'),
+      mInitial: getInputValueById('middle-initial-input')
+    }
+    updateProfile(employeeList, employee.id, newName, newDateOfBirth, newDateOfEmployment);
+    cancelModal();
   }
 
   return <div className='modal'>

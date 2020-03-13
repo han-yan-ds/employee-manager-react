@@ -3,7 +3,7 @@ import Employee from '../../types/Employee';
 
 const EmployeeItem = (props: {
   employee: Employee, handleChangeStatus: Function, handleShowProfileForm: Function
-}) => (
+  }) => (
   <li>
     <span>{`${props.employee.nameString} ${props.employee.isActive}`}</span>
     {/* active/inactive button */}
