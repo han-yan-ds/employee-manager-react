@@ -17,8 +17,13 @@ const EmployeeProfileForm = (
 ) => {
   const {name, dateOfBirth, dateOfEmployment} = employee;
 
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(e.target); // CURRENT PRINTS THE ENTIRE FORM OUT
+  }
+
   return <div className='modal'>
-    <form>
+    <form onSubmit={submitHandler}>
       <label>First Name<span className='required-asterisk'>*</span></label>
       <input 
         type='text' 
@@ -54,11 +59,11 @@ const EmployeeProfileForm = (
         required={true} 
         defaultValue={convertDateToHtmlInput(dateOfEmployment)}
       />
+      {/* cancel button */}
+      <button onClick={() => cancelModal()}>X</button>
+      {/* save button */}
+      <input type='submit' value='Save Changes'/>
     </form>
-    {/* cancel button */}
-    <button onClick={() => cancelModal()}>X</button>
-    {/* save button */}
-    <button>Save Changes</button>
   </div>
 
 }
