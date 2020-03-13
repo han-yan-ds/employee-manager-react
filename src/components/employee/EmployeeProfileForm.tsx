@@ -4,6 +4,7 @@ import Employee from '../../types/Employee';
 import {Date, Name, UpdateProfileParameters} from '../../types/types';
 import {convertDateToHtmlInput, convertDateStrToDate, getInputValueById} from '../../util/util';
 import {updateEmployeeProfile, hideProfileModal} from '../../actions/actions';
+import {Modal, Button} from 'react-bootstrap';
 import '../../styles/general.scss';
 
 function mapDispatchToProps(dispatch: Function) {
@@ -36,8 +37,13 @@ const EmployeeProfileForm = (
     cancelModal();
   }
 
-  return <div>
-    <form onSubmit={submitHandler}>
+  return <Modal.Dialog>
+
+    <Modal.Header closeButton onHide={() => cancelModal()}>
+      <Modal.Title>Edit Profile</Modal.Title>
+    </Modal.Header>
+
+    <form>
       <label>First Name<span className='required-asterisk'>*</span></label>
       <input 
         type='text' 
@@ -76,12 +82,14 @@ const EmployeeProfileForm = (
         required={true} 
         defaultValue={convertDateToHtmlInput(dateOfEmployment)}
       />
-      {/* cancel button */}
-      <button onClick={() => cancelModal()}>X</button>
-      {/* save button */}
-      <input type='submit' value='Save Changes'/>
     </form>
-  </div>
+
+    <Modal.Footer>
+      <Button variant='secondary' onClick={() => cancelModal()}>Cancel</Button>
+      <Button variant='primary' onClick={submitHandler}>Save Changes</Button>
+    </Modal.Footer>
+
+  </Modal.Dialog>
 
 }
 
