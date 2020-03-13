@@ -36,7 +36,7 @@ const EmployeeProfileForm = (
     cancelModal();
   }
 
-  return <div className='modal'>
+  return <div>
     <form onSubmit={submitHandler}>
       <label>First Name<span className='required-asterisk'>*</span></label>
       <input 
