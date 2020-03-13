@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {State} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
-import {changeEmployeeList, showProfileModal} from '../../actions/actions';
+import {changeEmployeeActive, showProfileModal} from '../../actions/actions';
 
 function mapStateToProps(st: State) {
   const {employeeList, showProfileId} = st;
@@ -12,7 +12,7 @@ function mapStateToProps(st: State) {
 
 function mapDispatchToProps(dispatch: Function) {
   return {
-    handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeList(employeeList, employeeId)),
+    handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeActive(employeeList, employeeId)),
     handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId))
   }
 }
