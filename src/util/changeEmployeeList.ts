@@ -1,5 +1,5 @@
 import Employee from '../types/Employee';
-import {Date, Name, UpdateProfileParameters} from '../types/types';
+import {UpdateProfileParameters} from '../types/types';
 
 export const getEmployeeById = (
   employeeList: Employee[], 

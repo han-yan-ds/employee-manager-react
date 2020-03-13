@@ -1,4 +1,4 @@
-import {Action, Name, Date, UpdateProfileParameters} from '../types/types';
+import {Action, UpdateProfileParameters} from '../types/types';
 import Employee from '../types/Employee';
 import {changeActiveStatus, changeProfile} from '../util/changeEmployeeList';
 

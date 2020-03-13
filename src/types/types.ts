@@ -14,7 +14,7 @@ export type Date = {
 export type Name = {
   fName: string;
   lName: string;
-  mInitial: string | null;
+  mName: string | null;
 }
 
 export type State = {

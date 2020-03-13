@@ -4,6 +4,7 @@ import Employee from '../../types/Employee';
 import {Date, Name, UpdateProfileParameters} from '../../types/types';
 import {convertDateToHtmlInput, convertDateStrToDate, getInputValueById} from '../../util/util';
 import {updateEmployeeProfile, hideProfileModal} from '../../actions/actions';
+import {Modal, Button, Form} from 'react-bootstrap';
 import '../../styles/general.scss';
 
 function mapDispatchToProps(dispatch: Function) {
@@ -30,58 +31,53 @@ const EmployeeProfileForm = (
     const newName: Name = {
       fName: getInputValueById('first-name-input'),
       lName: getInputValueById('last-name-input'),
-      mInitial: getInputValueById('middle-initial-input')
+      mName: getInputValueById('middle-name-input')
     }
     updateProfile(employeeList, employee.id, newName, newDateOfBirth, newDateOfEmployment);
     cancelModal();
   }
 
-  return <div className='modal'>
-    <form onSubmit={submitHandler}>
-      <label>First Name<span className='required-asterisk'>*</span></label>
-      <input 
-        type='text' 
-        id='first-name-input' 
-        required={true}
-        defaultValue={name.fName}
-      />
-      <label>Middle Initial</label>
-      <input 
-        type='text' 
-        id='middle-initial-input' 
-        defaultValue={(name.mInitial) ? name.mInitial : ''}
-        size={1}
-        onChange={(e) => {
-          e.target.value = e.target.value.toUpperCase();
-        }}
-      />
-      <label>Last Name<span className='required-asterisk'>*</span></label>
-      <input 
-        type='text' 
-        id='last-name-input'
-        required={true}
-        defaultValue={name.lName}
-      />
-      <label>Date Of Birth<span className='required-asterisk'>*</span></label>
-      <input 
-        type='date' 
-        id='date-of-birth-input'
-        required={true}
-        defaultValue={convertDateToHtmlInput(dateOfBirth)}
-      />
-      <label>Date Of Employment<span className='required-asterisk'>*</span></label>
-      <input 
-        type='date' 
-        id='date-of-employment-input'
-        required={true} 
-        defaultValue={convertDateToHtmlInput(dateOfEmployment)}
-      />
-      {/* cancel button */}
-      <button onClick={() => cancelModal()}>X</button>
-      {/* save button */}
-      <input type='submit' value='Save Changes'/>
-    </form>
-  </div>
+  return <Modal.Dialog>
+
+    <Modal.Header closeButton onHide={() => cancelModal()}>
+      <Modal.Title>Edit Profile</Modal.Title>
+    </Modal.Header>
+
+    <Form>
+
+      <Form.Group controlId="first-name-input">
+        <Form.Label>First Name<span className='required-asterisk'>*</span></Form.Label>
+        <Form.Control required defaultValue={name.fName}/>
+      </Form.Group>
+
+      <Form.Group controlId="middle-name-input">
+        <Form.Label>Middle Name</Form.Label>
+        <Form.Control required defaultValue={(name.mName) ? name.mName : ''}/>
+      </Form.Group>
+
+      <Form.Group controlId="last-name-input">
+        <Form.Label>Last Name<span className='required-asterisk'>*</span></Form.Label>
+        <Form.Control required defaultValue={name.lName}/>
+      </Form.Group>
+
+      <Form.Group controlId="date-of-birth-input">
+        <Form.Label>Date Of Birth<span className='required-asterisk'>*</span></Form.Label>
+        <Form.Control type='date' required defaultValue={convertDateToHtmlInput(dateOfBirth)}/>
+      </Form.Group>
+
+      <Form.Group controlId="date-of-employment-input">
+        <Form.Label>Date Of Employment<span className='required-asterisk'>*</span></Form.Label>
+        <Form.Control type='date' required defaultValue={convertDateToHtmlInput(dateOfEmployment)}/>
+      </Form.Group>
+
+    </Form>
+
+    <Modal.Footer>
+      <Button variant='secondary' onClick={() => cancelModal()}>Cancel</Button>
+      <Button variant='primary' onClick={submitHandler}>Save Changes</Button>
+    </Modal.Footer>
+
+  </Modal.Dialog>
 
 }
 

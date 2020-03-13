@@ -4,6 +4,7 @@ import {State} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
 import {changeEmployeeActive, showProfileModal} from '../../actions/actions';
+import {Table} from 'react-bootstrap';
 
 function mapStateToProps(st: State) {
   const {employeeList, showProfileId} = st;
@@ -23,18 +24,26 @@ const EmployeeList = (
   ) => {
 
   if (employeeList) {
-    return  <ul>
-      {employeeList.map((employee) => 
-        <EmployeeItem 
-          key={employee.id} 
-          employee={employee}
-          handleChangeStatus={() => handleChangeStatus(employeeList, employee.id)}
-          handleShowProfileForm={() => {
-            if (!showProfileId) handleShowProfileForm(employee.id);
-          }}
-        />)
-      }
-    </ul>
+    return  <Table responsive="md">
+      <thead><tr>
+        <th>Employee Name</th>
+        <th>Date of Employment</th>
+        <th>Date of Birth</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        {employeeList.map((employee) => 
+          <EmployeeItem 
+            key={employee.id} 
+            employee={employee}
+            handleChangeStatus={() => handleChangeStatus(employeeList, employee.id)}
+            handleShowProfileForm={() => {
+              if (!showProfileId) handleShowProfileForm(employee.id);
+            }}
+          />)
+        }
+      </tbody>
+    </Table>
   } return null;
 }
 
