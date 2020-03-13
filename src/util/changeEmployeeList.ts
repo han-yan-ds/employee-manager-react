@@ -1,16 +1,18 @@
 import Employee from '../types/Employee';
+import {Date, Name, UpdateProfileParameters} from '../types/types';
 
 export const getEmployeeById = (
   employeeList: Employee[], 
   employeeId: string
-): Employee => employeeList.find((employee) => employee.id === employeeId)!;
+  ): Employee => employeeList.find((employee) => employee.id === employeeId)!;
 
 
 export const changeActiveStatus = (
   employeeList: Employee[], 
   employeeId: string, 
   newStatus: boolean | undefined = undefined
-): Employee[] => {
+  ): Employee[] => {
+
   const employeeListClone = [...employeeList];
   const targetEmployee = getEmployeeById(employeeListClone, employeeId);
   if (newStatus === undefined) {
@@ -18,19 +20,16 @@ export const changeActiveStatus = (
   } else {
     targetEmployee.isActive = newStatus;
   }
-  // console.log(targetEmployee.isActive);
   return employeeListClone;
 }
 
-export const changeName = (
-  employeeList: Employee[],
-  employeeId: string,
-  newFName: string,
-  newLName: string,
-  newMInitial: string | null = null
+export const changeProfile = (
+  ...[employeeList, employeeId, newName, newDateOfBirth, newDateOfEmployment]: UpdateProfileParameters
 ): Employee[] => {
   const employeeListClone = [...employeeList];
   const targetEmployee = getEmployeeById(employeeListClone, employeeId);
-  targetEmployee.name = {fName: newFName, lName: newLName, mInitial: newMInitial};
+  targetEmployee.name = newName;
+  targetEmployee.dateOfBirth = newDateOfBirth;
+  targetEmployee.dateOfEmployment = newDateOfEmployment
   return employeeListClone;
 }

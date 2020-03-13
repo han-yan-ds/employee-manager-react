@@ -24,3 +24,11 @@ export type State = {
 }
 
 export type ClickHandler = (e: React.MouseEvent) => void;
+
+export type UpdateProfileParameters = [
+  Employee[], // employeeList
+  string, // employeeId... never null
+  Name, // employeeName
+  Date, // dateOfBirth
+  Date // dateOfEmployment
+]
