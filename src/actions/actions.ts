@@ -1,4 +1,4 @@
-import {Action, Name, Date} from '../types/types';
+import {Action, Name, Date, UpdateProfileParameters} from '../types/types';
 import Employee from '../types/Employee';
 import {changeActiveStatus, changeProfile} from '../util/changeEmployeeList';
 
@@ -9,16 +9,10 @@ export function changeEmployeeActive(employeeList: Employee[], employeeId: strin
   }
 }
 
-export function updateEmployeeProfile(
-  employeeList: Employee[], 
-  employeeId: string, 
-  newName: Name, 
-  newDob: Date, 
-  newDoe: Date
-) {
+export function updateEmployeeProfile(...args: UpdateProfileParameters) {
   return {
     type: 'UPDATE_EMPLOYEE_PROFILE',
-    value: changeProfile(employeeList, employeeId, newName, newDob, newDoe)
+    value: changeProfile(...args)
   }
 }
 

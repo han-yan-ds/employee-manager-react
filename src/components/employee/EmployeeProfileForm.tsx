@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
-import {Date, Name} from '../../types/types';
+import {Date, Name, UpdateProfileParameters} from '../../types/types';
 import {convertDateToHtmlInput, convertDateStrToDate, getInputValueById} from '../../util/util';
 import {updateEmployeeProfile, hideProfileModal} from '../../actions/actions';
 import '../../styles/general.scss';
@@ -9,13 +9,7 @@ import '../../styles/general.scss';
 function mapDispatchToProps(dispatch: Function) {
   return {
     cancelModal: () => dispatch(hideProfileModal()),
-    updateProfile: (
-      employeeList: Employee[], 
-      employeeId: string, 
-      newName: Name, 
-      newDob: Date, 
-      newDoe: Date
-      ) => dispatch(updateEmployeeProfile(employeeList, employeeId, newName, newDob, newDoe)),
+    updateProfile: (...args: UpdateProfileParameters) => dispatch(updateEmployeeProfile(...args)),
   }
 }
 

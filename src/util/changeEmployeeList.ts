@@ -1,5 +1,5 @@
 import Employee from '../types/Employee';
-import {Date, Name} from '../types/types';
+import {Date, Name, UpdateProfileParameters} from '../types/types';
 
 export const getEmployeeById = (
   employeeList: Employee[], 
@@ -24,13 +24,8 @@ export const changeActiveStatus = (
 }
 
 export const changeProfile = (
-  employeeList: Employee[],
-  employeeId: string,
-  newName: Name,
-  newDateOfBirth: Date,
-  newDateOfEmployment: Date
-  ): Employee[] => {
-
+  ...[employeeList, employeeId, newName, newDateOfBirth, newDateOfEmployment]: UpdateProfileParameters
+): Employee[] => {
   const employeeListClone = [...employeeList];
   const targetEmployee = getEmployeeById(employeeListClone, employeeId);
   targetEmployee.name = newName;
