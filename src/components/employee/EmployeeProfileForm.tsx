@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
-import {convertDateToHtmlInput} from '../../util/util';
+import {convertDateToHtmlInput, getInputValueById} from '../../util/util';
 import {hideProfileModal} from '../../actions/actions';
 import '../../styles/general.scss';
 
@@ -19,7 +19,7 @@ const EmployeeProfileForm = (
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(e.target); // CURRENT PRINTS THE ENTIRE FORM OUT
+    console.log(getInputValueById('middle-initial-input')); // CURRENT PRINTS THE ENTIRE FORM OUT
   }
 
   return <div className='modal'>
@@ -27,35 +27,35 @@ const EmployeeProfileForm = (
       <label>First Name<span className='required-asterisk'>*</span></label>
       <input 
         type='text' 
-        name='firstName' 
+        id='first-name-input' 
         required={true}
         defaultValue={name.fName}
       />
       <label>Middle Initial</label>
       <input 
         type='text' 
-        name='middleInitial' 
+        id='middle-initial-input' 
         defaultValue={(name.mInitial) ? name.mInitial : ''}
         size={1}
       />
       <label>Last Name<span className='required-asterisk'>*</span></label>
       <input 
         type='text' 
-        name='lastName'
+        id='last-name-input'
         required={true}
         defaultValue={name.lName}
       />
       <label>Date Of Birth<span className='required-asterisk'>*</span></label>
       <input 
         type='date' 
-        name='dateOfBirth'
+        id='date-of-birth-input'
         required={true}
         defaultValue={convertDateToHtmlInput(dateOfBirth)}
       />
       <label>Date Of Employment<span className='required-asterisk'>*</span></label>
       <input 
         type='date' 
-        name='dateOfEmployment'
+        id='date-of-employment-input'
         required={true} 
         defaultValue={convertDateToHtmlInput(dateOfEmployment)}
       />

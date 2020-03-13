@@ -9,3 +9,8 @@ function zeroPad(num: number, places: number) {
   const zero = places - num.toString().length + 1;
   return `${Array(+(zero > 0 && zero)).join('0')}${num}`;
 }
+
+export function getInputValueById(id: string): any {
+  const value = (document.getElementById(id)! as HTMLInputElement).value;
+  return (value !== '') ? value : null;
+}
