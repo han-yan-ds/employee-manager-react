@@ -57,6 +57,9 @@ const EmployeeProfileForm = (
         id='middle-initial-input' 
         defaultValue={(name.mInitial) ? name.mInitial : ''}
         size={1}
+        onChange={(e) => {
+          e.target.value = e.target.value.toUpperCase();
+        }}
       />
       <label>Last Name<span className='required-asterisk'>*</span></label>
       <input 
