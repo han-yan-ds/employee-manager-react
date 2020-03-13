@@ -31,7 +31,7 @@ const EmployeeProfileForm = (
     const newName: Name = {
       fName: getInputValueById('first-name-input'),
       lName: getInputValueById('last-name-input'),
-      mInitial: getInputValueById('middle-initial-input')
+      mName: getInputValueById('middle-name-input')
     }
     updateProfile(employeeList, employee.id, newName, newDateOfBirth, newDateOfEmployment);
     cancelModal();
@@ -50,18 +50,9 @@ const EmployeeProfileForm = (
         <Form.Control required defaultValue={name.fName}/>
       </Form.Group>
 
-      <Form.Group controlId="middle-initial-input">
-        <Form.Label>Middle Initial</Form.Label>
-        <Form.Control required 
-        defaultValue={(name.mInitial) ? name.mInitial : ''}
-        />
-        {/* <input 
-          type='text' 
-          id='middle-initial-input' 
-          defaultValue={(name.mInitial) ? name.mInitial : ''}
-          size={1}
-          
-        /> */}
+      <Form.Group controlId="middle-name-input">
+        <Form.Label>Middle Name</Form.Label>
+        <Form.Control required defaultValue={(name.mName) ? name.mName : ''}/>
       </Form.Group>
 
       <Form.Group controlId="last-name-input">
