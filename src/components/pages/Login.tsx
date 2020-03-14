@@ -1,17 +1,30 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {logIn} from '../../actions/actions';
 import {Modal, Form, Button} from 'react-bootstrap';
 import {getInputValueById, isValidCredentials} from '../../util/util';
 import crypto from 'crypto';
+import { ClickHandler } from '../../types/types';
 const shasum = crypto.createHash('sha256');
 
-const loginHandler = async (e: React.FormEvent) => {
+const loginHandler = async (e: React.FormEvent, onSuccess: Function) => {
   e.preventDefault();
   const username: string = getInputValueById('user-name');
   const hash: string = shasum.update(getInputValueById('pass-word')).digest('hex');
-  console.log(await isValidCredentials(username, hash));
+  if (await isValidCredentials(username, hash)) {
+    onSuccess();
+  } else {
+    //onFailure();
+  }
 }
 
-const Login = () => (
+function mapDispatchToProps(dispatch: Function) {
+  return {
+    handleLogin: () => dispatch(logIn()),
+  }
+}
+
+const Login = ({handleLogin}: {handleLogin: ClickHandler}) => (
   <Modal.Dialog>
     <Modal.Header>
       <Modal.Title>Please Log In!</Modal.Title>
@@ -27,9 +40,9 @@ const Login = () => (
       </Form.Group>
     </Form>
     <Modal.Footer>
-      <Button variant='primary' onClick={loginHandler}>Login</Button>
+      <Button variant='primary' onClick={(e: React.MouseEvent) => loginHandler(e, handleLogin)}>Login</Button>
     </Modal.Footer>
   </Modal.Dialog>
 )
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);

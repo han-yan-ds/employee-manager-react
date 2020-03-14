@@ -19,4 +19,4 @@ const JOVI = new Employee(
 )
 
 export const defaultEmployeeList = [HAN, JAS, JOVI];
-export let defaultIsLoggedIn = true;
+export let defaultIsLoggedIn = false;
