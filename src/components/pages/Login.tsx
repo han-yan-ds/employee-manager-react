@@ -3,6 +3,8 @@ import {Modal, Form, Button} from 'react-bootstrap';
 import {getInputValueById} from '../../util/util';
 import crypto from 'crypto';
 
+const SERVERURL = 'http://localhost:9001';
+
 const shasum = crypto.createHash('sha256');
 
 const loginHandler = async (e: React.FormEvent) => {
@@ -10,7 +12,7 @@ const loginHandler = async (e: React.FormEvent) => {
   const username: string = getInputValueById('user-name');
   const hash: string = shasum.update(getInputValueById('pass-word')).digest('hex');
   
-  const response = await fetch('http://localhost:9001/auth/login', {
+  const response = await fetch(`${SERVERURL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({username, hash})
