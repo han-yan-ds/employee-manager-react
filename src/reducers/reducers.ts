@@ -22,6 +22,15 @@ export function isLoggedInReducer(defValue = defaultIsLoggedIn, action: Action):
   }
 }
 
+export function showLoginFailureReducer(defValue = false, action: Action): boolean {
+  switch (action.type) {
+    case 'SHOW_LOGIN_FAILURE':
+      return action.value;
+    default:
+      return defValue;
+  }
+}
+
 export function profileModalReducer(defValue = null, action: Action): string | null {
   switch (action.type) {
     case 'SHOW_PROFILE_MODAL':

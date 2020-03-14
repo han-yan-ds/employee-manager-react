@@ -30,6 +30,13 @@ export function logIn(): Action {
   }
 }
 
+export function showLoginFailure(showFail: boolean): Action {
+  return {
+    type: 'SHOW_LOGIN_FAILURE',
+    value: showFail
+  }
+}
+
 export function showProfileModal(employeeId: string): Action {
   return {
     type: 'SHOW_PROFILE_MODAL',

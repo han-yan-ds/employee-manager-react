@@ -1,5 +1,16 @@
 import {Date} from '../types/types';
 
+const SERVERURL = 'http://localhost:9001';
+
+export async function isValidCredentials(username: string, hash: string) {
+  const response = await fetch(`${SERVERURL}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({username, hash})
+  });
+  return await response.json();
+}
+
 export function convertDateToHtmlInput(date: Date): string {
   /**
    * This is converting a Date to an HTML date string
@@ -27,4 +38,3 @@ export function convertDateStrToDate(dateString: string): Date {
   const [year, month, day] = dateString.split('-').map((numStr) => Number(numStr));
   return {day, month, year};
 }
-
