@@ -2,11 +2,13 @@ import {combineReducers} from 'redux';
 import {
   employeeListReducer, 
   isLoggedInReducer,
-  profileModalReducer
+  profileModalReducer,
+  showLoginFailureReducer
 } from './reducers';
 
 export default combineReducers({
   employeeList: employeeListReducer,
   isLoggedIn: isLoggedInReducer,
   showProfileId: profileModalReducer,
+  showLoginFailure: showLoginFailureReducer
 });

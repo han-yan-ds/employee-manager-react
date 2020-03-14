@@ -7,6 +7,10 @@ import crypto from 'crypto';
 import { ClickHandler } from '../../types/types';
 const shasum = crypto.createHash('sha256');
 
+// const handleFailedLogin() {
+
+// }
+
 const loginHandler = async (e: React.FormEvent, onSuccess: Function) => {
   e.preventDefault();
   const username: string = getInputValueById('user-name');
