@@ -5,26 +5,29 @@ import Header from './Header';
 import EmployeeProfileForm from '../employee/EmployeeProfileForm';
 import {State} from '../../types/types';
 import Employee from '../../types/Employee';
-import {getEmployeeById} from '../../util/changeEmployeeList';
+import {getEmployeeById} from '../../util/util';
 
 function mapStateToProps(st: State) {
   const {employeeList, showProfileId} = st;
   return {employeeList, showProfileId};
 }
 
-const renderProfileForm = (employeeList: Employee[], showProfileId: string | null) => {
-  if (showProfileId) {
+const renderProfileForm = (employeeList: Employee[], showProfileId: number | 'addEmployee' | null) => {
+  if (showProfileId === 'addEmployee') { // adding an employee
     return <EmployeeProfileForm 
-      employeeList={employeeList} 
+      employee={null}
+    />
+  } else if (showProfileId) { // id of existing employee updating an employee
+    return <EmployeeProfileForm 
       employee={getEmployeeById(employeeList, showProfileId)}
     />
-  } else {
+  } else { // just not showing the form
     return;
   }
 }
 
 const App = (
-  {employeeList, showProfileId}: {employeeList: Employee[], showProfileId: string | null}
+  {employeeList, showProfileId}: {employeeList: Employee[], showProfileId: number | null}
   ) => (
   <React.Fragment>
     <Header/>

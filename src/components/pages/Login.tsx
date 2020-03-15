@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {logIn, showLoginFailure} from '../../actions/actions';
 import {Modal, Form, Button} from 'react-bootstrap';
-import {getInputValueById, isValidCredentials} from '../../util/util';
+import {getInputValueById} from '../../util/util';
+import {isValidCredentials} from '../../util/fetches';
 import crypto from 'crypto';
 import { ClickHandler } from '../../types/types';
 

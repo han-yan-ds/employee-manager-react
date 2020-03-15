@@ -1,15 +1,15 @@
-import {Date} from '../types/types';
+import {Date, DatabaseEmployee} from '../types/types';
+import Employee from '../types/Employee';
 
-const SERVERURL = 'http://localhost:9001';
+export const getEmployeeById = (
+  employeeList: Employee[], 
+  employeeId: number
+  ): Employee => employeeList.find((employee) => employee.id === employeeId)!;
 
-export async function isValidCredentials(username: string, hash: string) {
-  const response = await fetch(`${SERVERURL}/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({username, hash})
-  });
-  return await response.json();
-}
+
+export const sortEmployeeList = (employeeList: Employee[]) => (
+  employeeList.sort((a, b) => b.id - a.id)
+)
 
 export function convertDateToHtmlInput(date: Date): string {
   /**
@@ -37,4 +37,15 @@ export function convertDateStrToDate(dateString: string): Date {
    */
   const [year, month, day] = dateString.split('-').map((numStr) => Number(numStr));
   return {day, month, year};
+}
+
+export function convertDatabaseEmployeeToEmployeeObject(record: DatabaseEmployee): Employee {
+  const {uuid, firstname, middlename, lastname, dob, doe, active} = record;
+  return new Employee(
+    uuid,
+    {fName: firstname, lName: lastname, mName: middlename},
+    convertDateStrToDate(dob.split('T')[0]),
+    convertDateStrToDate(doe.split('T')[0]),
+    active
+  )
 }

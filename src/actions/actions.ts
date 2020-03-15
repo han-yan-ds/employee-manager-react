@@ -1,18 +1,12 @@
-import {Action, UpdateProfileParameters} from '../types/types';
+import {Action} from '../types/types';
 import Employee from '../types/Employee';
-import {changeActiveStatus, changeProfile} from '../util/changeEmployeeList';
+import {sortEmployeeList} from '../util/util';
 
-export function changeEmployeeActive(employeeList: Employee[], employeeId: string): Action {
-  return {
-    type: 'CHANGE_EMPLOYEE_ACTIVE',
-    value: changeActiveStatus(employeeList, employeeId),
-  }
-}
 
-export function updateEmployeeProfile(...args: UpdateProfileParameters) {
+export function changeEmployeeList(employeeList: Employee[]): Action {
   return {
-    type: 'UPDATE_EMPLOYEE_PROFILE',
-    value: changeProfile(...args)
+    type: 'CHANGE_EMPLOYEE_LIST',
+    value: sortEmployeeList(employeeList)
   }
 }
 
@@ -44,7 +38,7 @@ export function showLoginFailure(showFail: boolean): Action {
   }
 }
 
-export function showProfileModal(employeeId: string): Action {
+export function showProfileModal(employeeId: number | 'addEmployee'): Action {
   return {
     type: 'SHOW_PROFILE_MODAL',
     value: employeeId

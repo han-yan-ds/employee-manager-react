@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {State, EmployeeFilterCb} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
-import {changeEmployeeActive, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
-import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
+import {changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
+import {Table, Button, Dropdown, DropdownButton} from 'react-bootstrap';
+import { updateEmployeeList, toggleActiveEmployee} from '../../util/fetches';
 
 function mapStateToProps(st: State) {
   const {employeeList, employeeFilterKeyStatus, showProfileId} = st;
@@ -12,10 +13,17 @@ function mapStateToProps(st: State) {
 }
 
 function mapDispatchToProps(dispatch: Function) {
+  updateEmployeeList(dispatch);
+
   return {
-    handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeActive(employeeList, employeeId)),
-    handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId)),
-    handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => dispatch(changeEmployeeFilterKeyStatus(newFilterKeyStatus))
+    handleChangeStatus: async (employeeList: Employee[], employeeId: number) => {
+      await toggleActiveEmployee(employeeList, employeeId);
+      await updateEmployeeList(dispatch);
+    },
+    handleShowProfileForm: (employeeId: number) => dispatch(showProfileModal(employeeId)),
+    handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => {
+      dispatch(changeEmployeeFilterKeyStatus(newFilterKeyStatus));
+    },
   }
 }
 
@@ -26,13 +34,18 @@ const EmployeeList = (
     showProfileId: string | null; 
     handleChangeStatus: Function, 
     handleChangeFilter: Function,
-    handleShowProfileForm: Function}
+    handleShowProfileForm: Function,
+  }
   ) => {
 
   if (employeeList) {
     return  <Table responsive="md">
       <thead><tr>
-        <th>Employee Name</th>
+        <th>Employee Name
+          <Button 
+          variant='secondary' size='sm'
+          onClick={() => handleShowProfileForm('addEmployee')}>+</Button>
+        </th>
         <th>Date of Employment</th>
         <th>Date of Birth</th>
         <th>Status

@@ -25,15 +25,37 @@ export type State = {
   showLoginFailure: boolean;
 }
 
+export type DatabaseEmployee = {
+  uuid: number;
+  firstname: string;
+  middlename: string | null;
+  lastname: string;
+  dob: string;
+  doe: string;
+  active: boolean
+}
+
+export type DatabaseEmployeePatch = {
+  uuid: number;
+  firstname?: string;
+  middlename?: string | null;
+  lastname?: string;
+  dob?: string;
+  doe?: string;
+  active?: boolean
+}
+
+export type DatabaseEmployeePost = {
+  firstname: string;
+  middlename: string | null;
+  lastname: string;
+  dob: string;
+  doe: string;
+  active?: boolean
+}
+
 export type ClickHandler = (e: React.MouseEvent) => void;
 
-export type UpdateProfileParameters = [
-  Employee[], // employeeList
-  string, // employeeId... never null
-  Name, // employeeName
-  Date, // dateOfBirth
-  Date // dateOfEmployment
-]
 
 export const EmployeeFilterCb = {
   all: (em: Employee) => true,
