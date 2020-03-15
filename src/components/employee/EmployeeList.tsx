@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {State, EmployeeFilterCb} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
-import {changeEmployeeActive, changeEmployeeList, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
+import {changeEmployeeList, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
 import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
 import {getAllEmployees, toggleActiveEmployee} from '../../util/fetches';
 
@@ -17,7 +17,7 @@ function mapDispatchToProps(dispatch: Function) {
     dispatch(changeEmployeeList(resolvedList))
   }); // all I need to do is call updateEmployeeList() to update my list!
   updateEmployeeList();
-  
+
   return {
     handleChangeStatus: async (employeeList: Employee[], employeeId: string) => {
       await toggleActiveEmployee(employeeList, employeeId);

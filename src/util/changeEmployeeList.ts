@@ -7,22 +7,6 @@ export const getEmployeeById = (
   ): Employee => employeeList.find((employee) => employee.id === employeeId)!;
 
 
-export const changeActiveStatus = (
-  employeeList: Employee[], 
-  employeeId: string, 
-  newStatus: boolean | undefined = undefined
-  ): Employee[] => {
-
-  const employeeListClone = [...employeeList];
-  const targetEmployee = getEmployeeById(employeeListClone, employeeId);
-  if (newStatus === undefined) {
-    targetEmployee.toggleActive();
-  } else {
-    targetEmployee.isActive = newStatus;
-  }
-  return employeeListClone;
-}
-
 export const changeProfile = (
   ...[employeeList, employeeId, newName, newDateOfBirth, newDateOfEmployment]: UpdateProfileParameters
 ): Employee[] => {
