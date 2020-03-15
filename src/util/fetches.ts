@@ -1,5 +1,5 @@
 import { convertDatabaseEmployeeToEmployeeObject, getEmployeeById } from "./util";
-import { DatabaseEmployee, DatabaseEmployeePatch } from "../types/types";
+import { DatabaseEmployee, DatabaseEmployeePatch, DatabaseEmployeePost } from "../types/types";
 import {changeEmployeeList} from '../actions/actions';
 import Employee from '../types/Employee';
 
@@ -68,5 +68,20 @@ export const updateEmployeeInfo = (newProfile: DatabaseEmployeePatch) => new Pro
     resolve(updatedEmployee);
   } catch (err) {
     reject('Updating Employee failed');
+  }
+})
+
+export const addEmployee = (body: DatabaseEmployeePost) => new Promise(async (resolve, reject) => {
+  try {
+    const wholeBody: DatabaseEmployeePost = {active: true, ...body};
+    const response = await fetch(`${SERVERURL}/employees`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(wholeBody)
+    });
+    const newEmployee = await response.json();
+    resolve(newEmployee);
+  } catch (err) {
+    reject('Adding New Employee failed');
   }
 })

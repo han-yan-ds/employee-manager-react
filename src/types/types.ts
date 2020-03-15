@@ -45,6 +45,15 @@ export type DatabaseEmployeePatch = {
   active?: boolean
 }
 
+export type DatabaseEmployeePost = {
+  firstname: string;
+  middlename: string | null;
+  lastname: string;
+  dob: string;
+  doe: string;
+  active?: boolean
+}
+
 export type ClickHandler = (e: React.MouseEvent) => void;
 
 
