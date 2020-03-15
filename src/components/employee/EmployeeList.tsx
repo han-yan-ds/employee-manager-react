@@ -43,13 +43,13 @@ const EmployeeList = (
       <thead><tr>
         <th>Employee Name
           <Button 
-          variant='secondary' size='sm'
+          variant='outline-dark' size='sm' id='add-employee-button'
           onClick={() => handleShowProfileForm('addEmployee')}>+</Button>
         </th>
         <th>Date of Employment</th>
         <th>Date of Birth</th>
         <th>Status
-          <DropdownButton id="filter-status" title='' variant='White' className='inline'>
+          <DropdownButton id="filter-status" title='' variant='light' className='inline'>
             <Dropdown.Item onClick={() => handleChangeFilter('all')}>
               All
             </Dropdown.Item>
