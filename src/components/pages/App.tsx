@@ -13,11 +13,15 @@ function mapStateToProps(st: State) {
 }
 
 const renderProfileForm = (employeeList: Employee[], showProfileId: string | null) => {
-  if (showProfileId) {
+  if (showProfileId === 'addEmployee') { // adding an employee
+    return <EmployeeProfileForm 
+      employee={null}
+    />
+  } else if (showProfileId) { // id of existing employee updating an employee
     return <EmployeeProfileForm 
       employee={getEmployeeById(employeeList, showProfileId)}
     />
-  } else {
+  } else { // just not showing the form
     return;
   }
 }

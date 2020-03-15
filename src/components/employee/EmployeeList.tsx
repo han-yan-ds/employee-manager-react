@@ -4,7 +4,7 @@ import {State, EmployeeFilterCb} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
 import {changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
-import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
+import {Table, Button, Dropdown, DropdownButton} from 'react-bootstrap';
 import { updateEmployeeList, toggleActiveEmployee} from '../../util/fetches';
 
 function mapStateToProps(st: State) {
@@ -41,7 +41,11 @@ const EmployeeList = (
   if (employeeList) {
     return  <Table responsive="md">
       <thead><tr>
-        <th>Employee Name</th>
+        <th>Employee Name
+          <Button 
+          variant='secondary' size='sm'
+          onClick={() => handleShowProfileForm('addEmployee')}>+</Button>
+        </th>
         <th>Date of Employment</th>
         <th>Date of Birth</th>
         <th>Status

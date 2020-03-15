@@ -1,44 +1,61 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
-import {DatabaseEmployeePatch} from '../../types/types';
+import {DatabaseEmployeePatch, DatabaseEmployeePost} from '../../types/types';
 import {convertDateToHtmlInput, getInputValueById} from '../../util/util';
+import {BLANKEMPLOYEE} from '../../util/initialState';
 import {hideProfileModal} from '../../actions/actions';
 import {Modal, Button, Form} from 'react-bootstrap';
 import '../../styles/general.scss';
-import { updateEmployeeList, updateEmployeeInfo } from '../../util/fetches';
+import { updateEmployeeList, updateEmployeeInfo, addEmployee } from '../../util/fetches';
 
 function mapDispatchToProps(dispatch: Function) {
   return {
     cancelModal: () => dispatch(hideProfileModal()),
-    updateProfile: async (newProfile: DatabaseEmployeePatch) => {
-      await updateEmployeeInfo(newProfile);
+    updateProfile: async (updatedProfile: DatabaseEmployeePatch) => {
+      await updateEmployeeInfo(updatedProfile);
+      await updateEmployeeList(dispatch);
+    },
+    addProfile: async (newProfile: DatabaseEmployeePost) => {
+      await addEmployee(newProfile);
       await updateEmployeeList(dispatch);
     }
   }
 }
 
 const EmployeeProfileForm = (
-  {employee, cancelModal, updateProfile}: 
-  {employee: Employee, cancelModal: Function, updateProfile: Function}
+  {employee, cancelModal, updateProfile, addProfile}: 
+  {employee: Employee | null, cancelModal: Function, updateProfile: Function, addProfile: Function}
   ) => {
-
-  const {name, dateOfBirth, dateOfEmployment} = employee;
+  
+  const {name, dateOfBirth, dateOfEmployment} = (employee) ? employee : BLANKEMPLOYEE
 
   const submitHandler = (e: React.FormEvent) => {
     /**
      * This is what gets called when Save Changes gets called
      */
     e.preventDefault();
-    const newProfile: DatabaseEmployeePatch = {
-      uuid: employee.id,
-      firstname: getInputValueById('first-name-input'),
-      lastname: getInputValueById('last-name-input'),
-      middlename: getInputValueById('middle-name-input') || null,
-      dob: getInputValueById('date-of-birth-input'),
-      doe: getInputValueById('date-of-employment-input'),
+    if (employee) {
+      const updatedProfile: DatabaseEmployeePatch = {
+        uuid: employee.id,
+        firstname: getInputValueById('first-name-input'),
+        lastname: getInputValueById('last-name-input'),
+        middlename: getInputValueById('middle-name-input') || null,
+        dob: getInputValueById('date-of-birth-input'),
+        doe: getInputValueById('date-of-employment-input'),
+      }
+      updateProfile(updatedProfile);
+    } else {
+      const newProfile: DatabaseEmployeePost = {
+        firstname: getInputValueById('first-name-input'),
+        lastname: getInputValueById('last-name-input'),
+        middlename: getInputValueById('middle-name-input') || null,
+        dob: getInputValueById('date-of-birth-input'),
+        doe: getInputValueById('date-of-employment-input'),
+        active: true
+      }
+      addProfile(newProfile);
     }
-    updateProfile(newProfile);
     cancelModal();
   }
 

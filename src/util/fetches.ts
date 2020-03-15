@@ -23,6 +23,7 @@ const getAllEmployees = (cb: Function) => new Promise(async (resolve, reject) =>
     const allEmployees: DatabaseEmployee[] = await response.json();
     resolve(cb(allEmployees.map(convertDatabaseEmployeeToEmployeeObject)));
   } catch (err) {
+    console.log(err);
     reject('Error retrieving all employees');
   }
 })
