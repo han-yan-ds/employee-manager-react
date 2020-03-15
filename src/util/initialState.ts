@@ -1,2 +1,2 @@
 export const initialEmployeeList = [];
-export let defaultIsLoggedIn = false;
+export let defaultIsLoggedIn = true;

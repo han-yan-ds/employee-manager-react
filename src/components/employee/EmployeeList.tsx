@@ -5,7 +5,7 @@ import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
 import {changeEmployeeActive, changeEmployeeList, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
 import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
-import {getAllEmployees} from '../../util/fetches';
+import {getAllEmployees, toggleActiveEmployee} from '../../util/fetches';
 
 function mapStateToProps(st: State) {
   const {employeeList, employeeFilterKeyStatus, showProfileId} = st;
@@ -13,13 +13,21 @@ function mapStateToProps(st: State) {
 }
 
 function mapDispatchToProps(dispatch: Function) {
-  getAllEmployees((resolvedList: Employee[]) => {
+  const updateEmployeeList = () => getAllEmployees((resolvedList: Employee[]) => {
     dispatch(changeEmployeeList(resolvedList))
-  });
+  }); // all I need to do is call updateEmployeeList() to update my list!
+  updateEmployeeList();
+  
   return {
-    handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeActive(employeeList, employeeId)),
+    handleChangeStatus: async (employeeList: Employee[], employeeId: string) => {
+      await toggleActiveEmployee(employeeList, employeeId);
+      await updateEmployeeList();
+    },
     handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId)),
-    handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => dispatch(changeEmployeeFilterKeyStatus(newFilterKeyStatus))
+    handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => {
+      dispatch(changeEmployeeFilterKeyStatus(newFilterKeyStatus));
+      // updateEmployeeList();
+    }
   }
 }
 

@@ -35,6 +35,16 @@ export type DatabaseEmployee = {
   active: boolean
 }
 
+export type DatabaseEmployeePatch = {
+  uuid: string;
+  firstname?: string;
+  middlename?: string | null;
+  lastname?: string;
+  dob?: string;
+  doe?: string;
+  active?: boolean
+}
+
 export type ClickHandler = (e: React.MouseEvent) => void;
 
 export type UpdateProfileParameters = [
