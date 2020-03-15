@@ -1,5 +1,6 @@
 import { convertDatabaseEmployeeToEmployeeObject } from "./util";
 import { DatabaseEmployee, DatabaseEmployeePatch } from "../types/types";
+import {changeEmployeeList} from '../actions/actions';
 import Employee from '../types/Employee';
 import { getEmployeeById } from "./changeEmployeeList";
 
@@ -14,7 +15,7 @@ export async function isValidCredentials(username: string, hash: string) {
   return await response.json();
 }
 
-export const getAllEmployees = (cb: Function) => new Promise(async (resolve, reject) => {
+const getAllEmployees = (cb: Function) => new Promise(async (resolve, reject) => {
   try {
     const response = await fetch(`${SERVERURL}/employees`, {
       method: 'GET',
@@ -27,7 +28,18 @@ export const getAllEmployees = (cb: Function) => new Promise(async (resolve, rej
   }
 })
 
-export const patchEmployee = (body: DatabaseEmployeePatch) => new Promise(async (resolve, reject) => {
+export const createDispatchGetAllEmployees = (dispatch: Function) => (
+  /**
+   * This function returns a function that, when run, asks dispatch to update employeeList
+   * To update employeeList on the DOM, call createDispatchGetAllEmployees(dispatch)() inside mapDispatchToProps
+   */
+  () => getAllEmployees((resolvedList: Employee[]) => {
+    dispatch(changeEmployeeList(resolvedList))
+  })
+)
+
+
+const patchEmployee = (body: DatabaseEmployeePatch) => new Promise(async (resolve, reject) => {
   try {
     const response = await fetch(`${SERVERURL}/employees`, {
       method: 'PATCH',
@@ -44,9 +56,18 @@ export const patchEmployee = (body: DatabaseEmployeePatch) => new Promise(async 
 export const toggleActiveEmployee = (employeeList: Employee[], employeeId: string) => new Promise(async (resolve, reject) => {
   try {
     let newStatus = !getEmployeeById(employeeList, employeeId).isActive;
-    let changedStatus = await patchEmployee({uuid: employeeId, active: newStatus}); //ISSUE
+    let changedStatus = await patchEmployee({uuid: employeeId, active: newStatus});
     resolve(changedStatus);
   } catch (err) {
     reject('Toggling Active Employee failed');
+  }
+})
+
+export const updateEmployeeInfo = (newProfile: DatabaseEmployeePatch) => new Promise(async (resolve, reject) => {
+  try {
+    let updatedEmployee = await patchEmployee(newProfile);
+    resolve(updatedEmployee);
+  } catch (err) {
+    reject('Updating Employee failed');
   }
 })

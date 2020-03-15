@@ -1,13 +1,7 @@
-import {Action, UpdateProfileParameters} from '../types/types';
+import {Action} from '../types/types';
 import Employee from '../types/Employee';
-import {changeProfile, sortEmployeeList} from '../util/changeEmployeeList';
+import {sortEmployeeList} from '../util/changeEmployeeList';
 
-export function updateEmployeeProfile(...args: UpdateProfileParameters) {
-  return {
-    type: 'UPDATE_EMPLOYEE_PROFILE',
-    value: sortEmployeeList(changeProfile(...args))
-  }
-}
 
 export function changeEmployeeList(employeeList: Employee[]): Action {
   return {

@@ -1,16 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
-import {Date, Name, UpdateProfileParameters} from '../../types/types';
-import {convertDateToHtmlInput, convertDateStrToDate, getInputValueById} from '../../util/util';
-import {updateEmployeeProfile, hideProfileModal} from '../../actions/actions';
+import {DatabaseEmployeePatch} from '../../types/types';
+import {convertDateToHtmlInput, getInputValueById} from '../../util/util';
+import {hideProfileModal} from '../../actions/actions';
 import {Modal, Button, Form} from 'react-bootstrap';
 import '../../styles/general.scss';
+import { createDispatchGetAllEmployees, updateEmployeeInfo } from '../../util/fetches';
 
 function mapDispatchToProps(dispatch: Function) {
   return {
     cancelModal: () => dispatch(hideProfileModal()),
-    updateProfile: (...args: UpdateProfileParameters) => dispatch(updateEmployeeProfile(...args)),
+    updateProfile: async (newProfile: DatabaseEmployeePatch) => {
+      await updateEmployeeInfo(newProfile);
+      await createDispatchGetAllEmployees(dispatch)();
+    }
   }
 }
 
@@ -26,14 +30,15 @@ const EmployeeProfileForm = (
      * This is what gets called when Save Changes gets called
      */
     e.preventDefault();
-    const newDateOfBirth: Date = convertDateStrToDate(getInputValueById('date-of-birth-input'));
-    const newDateOfEmployment: Date = convertDateStrToDate(getInputValueById('date-of-employment-input'));
-    const newName: Name = {
-      fName: getInputValueById('first-name-input'),
-      lName: getInputValueById('last-name-input'),
-      mName: getInputValueById('middle-name-input')
+    const newProfile: DatabaseEmployeePatch = {
+      uuid: employee.id,
+      firstname: getInputValueById('first-name-input'),
+      lastname: getInputValueById('last-name-input'),
+      middlename: getInputValueById('middle-name-input') || null,
+      dob: getInputValueById('date-of-birth-input'),
+      doe: getInputValueById('date-of-employment-input'),
     }
-    updateProfile(employeeList, employee.id, newName, newDateOfBirth, newDateOfEmployment);
+    updateProfile(newProfile);
     cancelModal();
   }
 

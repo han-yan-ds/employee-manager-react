@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {State, EmployeeFilterCb} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
-import {changeEmployeeList, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
+import {changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
 import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
-import {getAllEmployees, toggleActiveEmployee} from '../../util/fetches';
+import { createDispatchGetAllEmployees, toggleActiveEmployee} from '../../util/fetches';
 
 function mapStateToProps(st: State) {
   const {employeeList, employeeFilterKeyStatus, showProfileId} = st;
@@ -13,21 +13,17 @@ function mapStateToProps(st: State) {
 }
 
 function mapDispatchToProps(dispatch: Function) {
-  const updateEmployeeList = () => getAllEmployees((resolvedList: Employee[]) => {
-    dispatch(changeEmployeeList(resolvedList))
-  }); // all I need to do is call updateEmployeeList() to update my list!
-  updateEmployeeList();
+  createDispatchGetAllEmployees(dispatch)();
 
   return {
     handleChangeStatus: async (employeeList: Employee[], employeeId: string) => {
       await toggleActiveEmployee(employeeList, employeeId);
-      await updateEmployeeList();
+      await createDispatchGetAllEmployees(dispatch)();
     },
     handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId)),
     handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => {
       dispatch(changeEmployeeFilterKeyStatus(newFilterKeyStatus));
-      // updateEmployeeList();
-    }
+    },
   }
 }
 
@@ -38,7 +34,8 @@ const EmployeeList = (
     showProfileId: string | null; 
     handleChangeStatus: Function, 
     handleChangeFilter: Function,
-    handleShowProfileForm: Function}
+    handleShowProfileForm: Function,
+  }
   ) => {
 
   if (employeeList) {
