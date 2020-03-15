@@ -1,6 +1,16 @@
 import {Date, DatabaseEmployee} from '../types/types';
 import Employee from '../types/Employee';
 
+export const getEmployeeById = (
+  employeeList: Employee[], 
+  employeeId: string
+  ): Employee => employeeList.find((employee) => employee.id === employeeId)!;
+
+
+export const sortEmployeeList = (employeeList: Employee[]) => (
+  employeeList.sort((a, b) => a.id.localeCompare(b.id))
+)
+
 export function convertDateToHtmlInput(date: Date): string {
   /**
    * This is converting a Date to an HTML date string

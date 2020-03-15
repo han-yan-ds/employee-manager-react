@@ -5,7 +5,7 @@ import Header from './Header';
 import EmployeeProfileForm from '../employee/EmployeeProfileForm';
 import {State} from '../../types/types';
 import Employee from '../../types/Employee';
-import {getEmployeeById} from '../../util/changeEmployeeList';
+import {getEmployeeById} from '../../util/util';
 
 function mapStateToProps(st: State) {
   const {employeeList, showProfileId} = st;

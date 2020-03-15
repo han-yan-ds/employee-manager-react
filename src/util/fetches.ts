@@ -1,8 +1,7 @@
-import { convertDatabaseEmployeeToEmployeeObject } from "./util";
+import { convertDatabaseEmployeeToEmployeeObject, getEmployeeById } from "./util";
 import { DatabaseEmployee, DatabaseEmployeePatch } from "../types/types";
 import {changeEmployeeList} from '../actions/actions';
 import Employee from '../types/Employee';
-import { getEmployeeById } from "./changeEmployeeList";
 
 const SERVERURL = 'http://localhost:9001';
 

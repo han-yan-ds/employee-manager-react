@@ -1,6 +1,6 @@
 import {Action} from '../types/types';
 import Employee from '../types/Employee';
-import {sortEmployeeList} from '../util/changeEmployeeList';
+import {sortEmployeeList} from '../util/util';
 
 
 export function changeEmployeeList(employeeList: Employee[]): Action {

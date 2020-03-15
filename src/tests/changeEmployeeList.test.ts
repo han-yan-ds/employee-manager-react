@@ -1,5 +1,4 @@
-import {changeActiveStatus, changeProfile} from '../util/changeEmployeeList';
-import {defaultEmployeeList} from '../util/initialState';
+import {initialEmployeeList} from '../util/initialState';
 
 describe('Change EmployeeList functions should work properly', () => {
   let employeeList = defaultEmployeeList;
