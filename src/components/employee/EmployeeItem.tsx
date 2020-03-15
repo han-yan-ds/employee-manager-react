@@ -10,7 +10,7 @@ const EmployeeItem = (props: {
     <td>{props.employee.dateOfEmploymentString}</td>
     <td>{props.employee.dateOfBirthString}</td>
     <td>{(props.employee.isActive) ? "Active" : "Inactive"}
-      <DropdownButton id={`options-${props.employee.id}`} title='' variant='Secondary' className="inline">
+      <DropdownButton id={`options-${props.employee.id}`} title='' variant='White' className="inline">
         <Dropdown.Item onClick={() => props.handleChangeStatus()}>
           {`Set ${(props.employee.isActive) ? "Inactive" : "Active"}`}
         </Dropdown.Item>
