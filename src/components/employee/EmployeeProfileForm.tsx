@@ -19,8 +19,8 @@ function mapDispatchToProps(dispatch: Function) {
 }
 
 const EmployeeProfileForm = (
-  {employeeList, employee, cancelModal, updateProfile}: 
-  {employeeList: Employee[], employee: Employee, cancelModal: Function, updateProfile: Function}
+  {employee, cancelModal, updateProfile}: 
+  {employee: Employee, cancelModal: Function, updateProfile: Function}
   ) => {
 
   const {name, dateOfBirth, dateOfEmployment} = employee;

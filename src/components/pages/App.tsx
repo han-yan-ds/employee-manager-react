@@ -15,7 +15,6 @@ function mapStateToProps(st: State) {
 const renderProfileForm = (employeeList: Employee[], showProfileId: string | null) => {
   if (showProfileId) {
     return <EmployeeProfileForm 
-      employeeList={employeeList} 
       employee={getEmployeeById(employeeList, showProfileId)}
     />
   } else {
