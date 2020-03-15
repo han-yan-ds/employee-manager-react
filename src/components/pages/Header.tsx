@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {State, ClickHandler} from '../../types/types';
 import {logOut, logIn} from '../../actions/actions';
+import {Button} from 'react-bootstrap';
 
 function mapStateToProps(st: State) {
   const {isLoggedIn} = st;
@@ -19,7 +20,7 @@ const Header = ({isLoggedIn, handleLogIn, handleLogOut}: {isLoggedIn: boolean, h
   let buttonText = (isLoggedIn) ? 'Log Out' : 'Log In';
   let handleClick = (isLoggedIn) ? handleLogOut : handleLogIn;
   return <header>
-    <button onClick={handleClick}>{buttonText}</button>
+    <Button variant='dark' id='logout-button' onClick={handleClick}>{buttonText}</Button>
   </header>
 }
 

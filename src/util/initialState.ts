@@ -2,7 +2,7 @@ import Employee from '../types/Employee';
 
 export const initialEmployeeList = [];
 
-export let defaultIsLoggedIn = true;
+export const defaultIsLoggedIn = false;
 
 export const BLANKEMPLOYEE: Employee = new Employee(-1, {
   fName: '',
