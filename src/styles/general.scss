@@ -20,12 +20,19 @@ th {
   display: inline;
 }
 
+.dropdown-toggle {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 #add-employee-button {
   border-radius: 1000px;
   margin-left: 6px;
 }
 
-.dropdown-toggle {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+#main-container {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 700px;
+  width: 65vw;
 }
