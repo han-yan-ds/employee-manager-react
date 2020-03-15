@@ -17,3 +17,7 @@ export const changeProfile = (
   targetEmployee.dateOfEmployment = newDateOfEmployment
   return employeeListClone;
 }
+
+export const sortEmployeeList = (employeeList: Employee[]) => (
+  employeeList.sort((a, b) => a.id.localeCompare(b.id))
+)

@@ -1,6 +1,6 @@
 import {Action, UpdateProfileParameters} from '../types/types';
 import Employee from '../types/Employee';
-import {changeProfile} from '../util/changeEmployeeList';
+import {changeProfile, sortEmployeeList} from '../util/changeEmployeeList';
 
 export function updateEmployeeProfile(...args: UpdateProfileParameters) {
   return {
@@ -12,7 +12,7 @@ export function updateEmployeeProfile(...args: UpdateProfileParameters) {
 export function changeEmployeeList(employeeList: Employee[]): Action {
   return {
     type: 'CHANGE_EMPLOYEE_LIST',
-    value: employeeList
+    value: sortEmployeeList(employeeList)
   }
 }
 
