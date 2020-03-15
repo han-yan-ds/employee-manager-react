@@ -2,7 +2,7 @@ import {Action} from '../types/types';
 import Employee from '../types/Employee';
 import {initialEmployeeList, defaultIsLoggedIn} from '../util/initialState';
 
-export function employeeListReducer(defValue = initialEmployeeList, action: Action): Employee[] {
+export const employeeListReducer = (defValue = initialEmployeeList, action: Action): Employee[] => {
   switch (action.type) {
     case 'CHANGE_EMPLOYEE_LIST':
       return action.value;
@@ -11,7 +11,7 @@ export function employeeListReducer(defValue = initialEmployeeList, action: Acti
   }
 }
 
-export function isLoggedInReducer(defValue = defaultIsLoggedIn, action: Action): boolean {
+export const isLoggedInReducer = (defValue = defaultIsLoggedIn, action: Action): boolean => {
   switch (action.type) {
     case 'LOG_IN':
       return action.value;
@@ -22,7 +22,7 @@ export function isLoggedInReducer(defValue = defaultIsLoggedIn, action: Action):
   }
 }
 
-export function employeeFilterKeyStatusReducer(_defValue = 'all', action: Action): 'all' | 'active' | 'inactive' {
+export const employeeFilterKeyStatusReducer = (_defValue = 'all', action: Action): 'all' | 'active' | 'inactive' => {
   switch (action.type) {
     case 'CHANGE_EMPLOYEE_FILTER_KEY_STATUS':
       return action.value;
@@ -31,7 +31,7 @@ export function employeeFilterKeyStatusReducer(_defValue = 'all', action: Action
   }
 }
 
-export function showLoginFailureReducer(defValue = false, action: Action): boolean {
+export const showLoginFailureReducer = (defValue = false, action: Action): boolean => {
   switch (action.type) {
     case 'SHOW_LOGIN_FAILURE':
       return action.value;
@@ -40,7 +40,7 @@ export function showLoginFailureReducer(defValue = false, action: Action): boole
   }
 }
 
-export function profileModalReducer(defValue = null, action: Action): string | null {
+export const profileModalReducer = (defValue = null, action: Action): string | null => {
   switch (action.type) {
     case 'SHOW_PROFILE_MODAL':
       return action.value;
