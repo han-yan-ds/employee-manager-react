@@ -16,6 +16,13 @@ export function updateEmployeeProfile(...args: UpdateProfileParameters) {
   }
 }
 
+export function changeEmployeeFilterKeyStatus(newKey: 'all' | 'active' | 'inactive'): Action {
+  return {
+    type: 'CHANGE_EMPLOYEE_FILTER_KEY_STATUS',
+    value: newKey
+  }
+}
+
 export function logOut(): Action {
   return {
     type: 'LOG_OUT',

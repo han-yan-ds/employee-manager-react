@@ -19,8 +19,10 @@ export type Name = {
 
 export type State = {
   employeeList: Employee[];
+  employeeFilterKeyStatus: 'all' | 'active' | 'inactive';
   isLoggedIn: boolean;
   showProfileId: string | null;
+  showLoginFailure: boolean;
 }
 
 export type ClickHandler = (e: React.MouseEvent) => void;
@@ -32,3 +34,9 @@ export type UpdateProfileParameters = [
   Date, // dateOfBirth
   Date // dateOfEmployment
 ]
+
+export const EmployeeFilterCb = {
+  all: (em: Employee) => true,
+  active: (em: Employee) => em.isActive,
+  inactive: (em: Employee) => !em.isActive
+}

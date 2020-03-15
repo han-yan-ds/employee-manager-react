@@ -22,6 +22,15 @@ export function isLoggedInReducer(defValue = defaultIsLoggedIn, action: Action):
   }
 }
 
+export function employeeFilterKeyStatusReducer(_defValue = 'all', action: Action): 'all' | 'active' | 'inactive' {
+  switch (action.type) {
+    case 'CHANGE_EMPLOYEE_FILTER_KEY_STATUS':
+      return action.value;
+    default:
+      return 'all';
+  }
+}
+
 export function showLoginFailureReducer(defValue = false, action: Action): boolean {
   switch (action.type) {
     case 'SHOW_LOGIN_FAILURE':
