@@ -1,5 +1,4 @@
 import {Name, Date} from './types';
-import {v4 as uuidv4} from 'uuid';
 
 export default class Employee {
 
@@ -14,18 +13,16 @@ export default class Employee {
    * Getting ID:  Employee.id
    */
 
-  private readonly employeeId: string;
-
   constructor(
+    private uuid: string,
     private employeeName: Name, 
     private employeeDob: Date, 
     private employeeDoe: Date, 
     private employeeIsActive: boolean = true) {
-      this.employeeId = uuidv4();
   }
 
   get id() {
-    return this.employeeId;
+    return this.uuid;
   }
 
   // NAME

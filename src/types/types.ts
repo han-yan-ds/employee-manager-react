@@ -25,6 +25,16 @@ export type State = {
   showLoginFailure: boolean;
 }
 
+export type DatabaseEmployee = {
+  uuid: string;
+  firstname: string;
+  middlename: string | null;
+  lastname: string;
+  dob: string;
+  doe: string;
+  active: boolean
+}
+
 export type ClickHandler = (e: React.MouseEvent) => void;
 
 export type UpdateProfileParameters = [

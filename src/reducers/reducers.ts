@@ -1,10 +1,12 @@
 import {Action} from '../types/types';
 import Employee from '../types/Employee';
-import {defaultEmployeeList, defaultIsLoggedIn} from '../util/initialState';
+import {initialEmployeeList, defaultIsLoggedIn} from '../util/initialState';
 
-export function employeeListReducer(defValue = defaultEmployeeList, action: Action): Employee[] {
+export function employeeListReducer(defValue = initialEmployeeList, action: Action): Employee[] {
   switch (action.type) {
     case 'CHANGE_EMPLOYEE_ACTIVE':
+      return action.value;
+    case 'CHANGE_EMPLOYEE_LIST':
       return action.value;
     default:
       return defValue;

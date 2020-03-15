@@ -16,6 +16,13 @@ export function updateEmployeeProfile(...args: UpdateProfileParameters) {
   }
 }
 
+export function changeEmployeeList(employeeList: Employee[]): Action {
+  return {
+    type: 'CHANGE_EMPLOYEE_LIST',
+    value: employeeList
+  }
+}
+
 export function changeEmployeeFilterKeyStatus(newKey: 'all' | 'active' | 'inactive'): Action {
   return {
     type: 'CHANGE_EMPLOYEE_FILTER_KEY_STATUS',

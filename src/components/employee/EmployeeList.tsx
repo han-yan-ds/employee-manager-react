@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {State, EmployeeFilterCb} from '../../types/types';
 import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
-import {changeEmployeeActive, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
+import {changeEmployeeActive, changeEmployeeList, changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
 import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
+import {getAllEmployees} from '../../util/fetches';
 
 function mapStateToProps(st: State) {
   const {employeeList, employeeFilterKeyStatus, showProfileId} = st;
@@ -12,6 +13,9 @@ function mapStateToProps(st: State) {
 }
 
 function mapDispatchToProps(dispatch: Function) {
+  getAllEmployees((resolvedList: Employee[]) => {
+    dispatch(changeEmployeeList(resolvedList))
+  });
   return {
     handleChangeStatus: (employeeList: Employee[], employeeId: string) => dispatch(changeEmployeeActive(employeeList, employeeId)),
     handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId)),
