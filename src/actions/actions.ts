@@ -5,7 +5,7 @@ import {changeProfile, sortEmployeeList} from '../util/changeEmployeeList';
 export function updateEmployeeProfile(...args: UpdateProfileParameters) {
   return {
     type: 'UPDATE_EMPLOYEE_PROFILE',
-    value: changeProfile(...args)
+    value: sortEmployeeList(changeProfile(...args))
   }
 }
 
