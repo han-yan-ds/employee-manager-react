@@ -5,7 +5,7 @@ import Employee from '../types/Employee';
 
 const SERVERURL = 'http://localhost:9001';
 
-export async function isValidCredentials(username: string, hash: string) {
+export const isValidCredentials = async (username: string, hash: string) => {
   const response = await fetch(`${SERVERURL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

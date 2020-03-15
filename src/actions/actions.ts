@@ -3,51 +3,51 @@ import Employee from '../types/Employee';
 import {sortEmployeeList} from '../util/util';
 
 
-export function changeEmployeeList(employeeList: Employee[]): Action {
-  return {
+export const changeEmployeeList = (employeeList: Employee[]): Action => (
+  {
     type: 'CHANGE_EMPLOYEE_LIST',
     value: sortEmployeeList(employeeList)
   }
-}
+)
 
-export function changeEmployeeFilterKeyStatus(newKey: 'all' | 'active' | 'inactive'): Action {
-  return {
+export const changeEmployeeFilterKeyStatus = (newKey: 'all' | 'active' | 'inactive'): Action => (
+  {
     type: 'CHANGE_EMPLOYEE_FILTER_KEY_STATUS',
     value: newKey
   }
-}
+)
 
-export function logOut(): Action {
-  return {
+export const logOut = (): Action => (
+  {
     type: 'LOG_OUT',
     value: false
   }
-}
+)
 
-export function logIn(): Action {
-  return {
+export const logIn = (): Action => (
+  {
     type: 'LOG_IN',
     value: true
   }
-}
+)
 
-export function showLoginFailure(showFail: boolean): Action {
-  return {
+export const showLoginFailure = (showFail: boolean): Action => (
+  {
     type: 'SHOW_LOGIN_FAILURE',
     value: showFail
   }
-}
+)
 
-export function showProfileModal(employeeId: number | 'addEmployee'): Action {
-  return {
+export const showProfileModal = (employeeId: number | 'addEmployee'): Action => (
+  {
     type: 'SHOW_PROFILE_MODAL',
     value: employeeId
   }
-}
+)
 
-export function hideProfileModal(): Action {
-  return {
+export const hideProfileModal = (): Action => (
+  {
     type: 'HIDE_PROFILE_MODAL',
     value: null
   }
-}
+)
