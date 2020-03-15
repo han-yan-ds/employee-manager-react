@@ -5,7 +5,7 @@ import Employee from '../../types/Employee';
 import EmployeeItem from './EmployeeItem';
 import {changeEmployeeFilterKeyStatus, showProfileModal} from '../../actions/actions';
 import {Table, Dropdown, DropdownButton} from 'react-bootstrap';
-import { createDispatchGetAllEmployees, toggleActiveEmployee} from '../../util/fetches';
+import { updateEmployeeList, toggleActiveEmployee} from '../../util/fetches';
 
 function mapStateToProps(st: State) {
   const {employeeList, employeeFilterKeyStatus, showProfileId} = st;
@@ -13,12 +13,12 @@ function mapStateToProps(st: State) {
 }
 
 function mapDispatchToProps(dispatch: Function) {
-  createDispatchGetAllEmployees(dispatch)();
+  updateEmployeeList(dispatch);
 
   return {
     handleChangeStatus: async (employeeList: Employee[], employeeId: string) => {
       await toggleActiveEmployee(employeeList, employeeId);
-      await createDispatchGetAllEmployees(dispatch)();
+      await updateEmployeeList(dispatch);
     },
     handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId)),
     handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => {

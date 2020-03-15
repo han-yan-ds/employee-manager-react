@@ -27,15 +27,15 @@ const getAllEmployees = (cb: Function) => new Promise(async (resolve, reject) =>
   }
 })
 
-export const createDispatchGetAllEmployees = (dispatch: Function) => (
+export const updateEmployeeList = (dispatch: Function): void => {
   /**
    * This function returns a function that, when run, asks dispatch to update employeeList
-   * To update employeeList on the DOM, call createDispatchGetAllEmployees(dispatch)() inside mapDispatchToProps
+   * To update employeeList on the DOM, call updateEmployeeList(dispatch) inside mapDispatchToProps
    */
-  () => getAllEmployees((resolvedList: Employee[]) => {
+  getAllEmployees((resolvedList: Employee[]) => {
     dispatch(changeEmployeeList(resolvedList))
   })
-)
+}
 
 
 const patchEmployee = (body: DatabaseEmployeePatch) => new Promise(async (resolve, reject) => {

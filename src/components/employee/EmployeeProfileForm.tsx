@@ -6,14 +6,14 @@ import {convertDateToHtmlInput, getInputValueById} from '../../util/util';
 import {hideProfileModal} from '../../actions/actions';
 import {Modal, Button, Form} from 'react-bootstrap';
 import '../../styles/general.scss';
-import { createDispatchGetAllEmployees, updateEmployeeInfo } from '../../util/fetches';
+import { updateEmployeeList, updateEmployeeInfo } from '../../util/fetches';
 
 function mapDispatchToProps(dispatch: Function) {
   return {
     cancelModal: () => dispatch(hideProfileModal()),
     updateProfile: async (newProfile: DatabaseEmployeePatch) => {
       await updateEmployeeInfo(newProfile);
-      await createDispatchGetAllEmployees(dispatch)();
+      await updateEmployeeList(dispatch);
     }
   }
 }
