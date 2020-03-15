@@ -20,9 +20,20 @@ th {
   display: inline;
 }
 
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .dropdown-toggle {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+.form-group {
+  @extend .center;
+  min-width: 150px;
+  width: 90% !important;
 }
 
 #add-employee-button {
@@ -31,8 +42,6 @@ th {
 }
 
 #main-container {
-  margin-left: auto;
-  margin-right: auto;
   min-width: 700px;
   width: 65vw;
 }

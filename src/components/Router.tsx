@@ -14,7 +14,7 @@ const choosePage = (isLoggedIn: boolean) => (
 )
 
 const Router = ({isLoggedIn}: {isLoggedIn: boolean}) => (
-  <main id="main-container">
+  <main id="main-container" className="center">
     {choosePage(isLoggedIn)}
   </main>
 )
