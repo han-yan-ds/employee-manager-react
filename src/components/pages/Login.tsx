@@ -11,7 +11,7 @@ const loginHandler = async (e: React.FormEvent, onSuccess: Function, onFailure: 
   e.preventDefault();
   const shasum = crypto.createHash('sha256');
   const username: string = getInputValueById('user-name');
-  const hash: string = shasum.update(getInputValueById('pass-word')).digest('hex');
+  const hash: string = shasum.update(getInputValueById('pass-word') || '').digest('hex');
   (await isValidCredentials(username, hash)) ? onSuccess() : onFailure();
 }
 
