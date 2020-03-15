@@ -38,7 +38,7 @@ export function showLoginFailure(showFail: boolean): Action {
   }
 }
 
-export function showProfileModal(employeeId: string): Action {
+export function showProfileModal(employeeId: number | 'addEmployee'): Action {
   return {
     type: 'SHOW_PROFILE_MODAL',
     value: employeeId

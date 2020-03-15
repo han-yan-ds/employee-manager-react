@@ -26,7 +26,7 @@ export type State = {
 }
 
 export type DatabaseEmployee = {
-  uuid: string;
+  uuid: number;
   firstname: string;
   middlename: string | null;
   lastname: string;
@@ -36,7 +36,7 @@ export type DatabaseEmployee = {
 }
 
 export type DatabaseEmployeePatch = {
-  uuid: string;
+  uuid: number;
   firstname?: string;
   middlename?: string | null;
   lastname?: string;

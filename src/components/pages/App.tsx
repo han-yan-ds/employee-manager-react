@@ -12,7 +12,7 @@ function mapStateToProps(st: State) {
   return {employeeList, showProfileId};
 }
 
-const renderProfileForm = (employeeList: Employee[], showProfileId: string | null) => {
+const renderProfileForm = (employeeList: Employee[], showProfileId: number | 'addEmployee' | null) => {
   if (showProfileId === 'addEmployee') { // adding an employee
     return <EmployeeProfileForm 
       employee={null}
@@ -27,7 +27,7 @@ const renderProfileForm = (employeeList: Employee[], showProfileId: string | nul
 }
 
 const App = (
-  {employeeList, showProfileId}: {employeeList: Employee[], showProfileId: string | null}
+  {employeeList, showProfileId}: {employeeList: Employee[], showProfileId: number | null}
   ) => (
   <React.Fragment>
     <Header/>

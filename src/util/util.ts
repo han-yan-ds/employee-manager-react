@@ -3,12 +3,12 @@ import Employee from '../types/Employee';
 
 export const getEmployeeById = (
   employeeList: Employee[], 
-  employeeId: string
+  employeeId: number
   ): Employee => employeeList.find((employee) => employee.id === employeeId)!;
 
 
 export const sortEmployeeList = (employeeList: Employee[]) => (
-  employeeList.sort((a, b) => a.id.localeCompare(b.id))
+  employeeList.sort((a, b) => b.id - a.id)
 )
 
 export function convertDateToHtmlInput(date: Date): string {

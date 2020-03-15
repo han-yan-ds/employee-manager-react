@@ -53,7 +53,7 @@ const patchEmployee = (body: DatabaseEmployeePatch) => new Promise(async (resolv
   }
 })
 
-export const toggleActiveEmployee = (employeeList: Employee[], employeeId: string) => new Promise(async (resolve, reject) => {
+export const toggleActiveEmployee = (employeeList: Employee[], employeeId: number) => new Promise(async (resolve, reject) => {
   try {
     let newStatus = !getEmployeeById(employeeList, employeeId).isActive;
     let changedStatus = await patchEmployee({uuid: employeeId, active: newStatus});

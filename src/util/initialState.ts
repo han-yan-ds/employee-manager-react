@@ -4,7 +4,7 @@ export const initialEmployeeList = [];
 
 export let defaultIsLoggedIn = true;
 
-export const BLANKEMPLOYEE: Employee = new Employee('', {
+export const BLANKEMPLOYEE: Employee = new Employee(-1, {
   fName: '',
   lName: '',
   mName: ''

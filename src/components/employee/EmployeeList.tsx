@@ -16,11 +16,11 @@ function mapDispatchToProps(dispatch: Function) {
   updateEmployeeList(dispatch);
 
   return {
-    handleChangeStatus: async (employeeList: Employee[], employeeId: string) => {
+    handleChangeStatus: async (employeeList: Employee[], employeeId: number) => {
       await toggleActiveEmployee(employeeList, employeeId);
       await updateEmployeeList(dispatch);
     },
-    handleShowProfileForm: (employeeId: string) => dispatch(showProfileModal(employeeId)),
+    handleShowProfileForm: (employeeId: number) => dispatch(showProfileModal(employeeId)),
     handleChangeFilter: (newFilterKeyStatus: 'all' | 'active' | 'inactive') => {
       dispatch(changeEmployeeFilterKeyStatus(newFilterKeyStatus));
     },

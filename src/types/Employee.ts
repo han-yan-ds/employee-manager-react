@@ -14,7 +14,7 @@ export default class Employee {
    */
 
   constructor(
-    private uuid: string,
+    private uuid: number,
     private employeeName: Name, 
     private employeeDob: Date, 
     private employeeDoe: Date, 
