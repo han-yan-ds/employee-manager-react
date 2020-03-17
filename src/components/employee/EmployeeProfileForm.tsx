@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
-import {DatabaseEmployeePatch, DatabaseEmployeePost} from '../../types/types';
+import {DatabaseEmployeePatch, DatabaseEmployeePost, State} from '../../types/types';
 import {convertDateToHtmlInput, getInputValueById, validateProfileForm } from '../../util/util';
-import {BLANKEMPLOYEE} from '../../util/initialState';
+import { BLANKEMPLOYEE } from '../../util/initialState';
 import {hideProfileModal, profileFormCheck} from '../../actions/actions';
 import {Modal, Button, Form} from 'react-bootstrap';
 import '../../styles/general.scss';
