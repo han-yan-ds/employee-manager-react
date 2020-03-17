@@ -76,48 +76,50 @@ const EmployeeProfileForm = (
     }
   }
 
-  return <Modal.Dialog>
+  return <div className="modal-parent">
+    
+    <Modal.Dialog>
 
-    <Modal.Header closeButton onHide={() => cancelModal()}>
-      <Modal.Title>Edit Profile</Modal.Title>
-    </Modal.Header>
+      <Modal.Header closeButton onHide={() => cancelModal()}>
+        <Modal.Title>Edit Profile</Modal.Title>
+      </Modal.Header>
 
-    <Form noValidate validated={profileFormChecked}>
+      <Form noValidate validated={profileFormChecked}>
 
-      <Form.Group controlId="first-name-input">
-        <Form.Label>First Name<span className='required-asterisk'>*</span></Form.Label>
-        <Form.Control required defaultValue={name.fName}/>
-      </Form.Group>
+        <Form.Group controlId="first-name-input">
+          <Form.Label>First Name<span className='required-asterisk'>*</span></Form.Label>
+          <Form.Control required defaultValue={name.fName}/>
+        </Form.Group>
 
-      <Form.Group controlId="middle-name-input">
-        <Form.Label>Middle Name</Form.Label>
-        <Form.Control defaultValue={(name.mName) ? name.mName : ''}/>
-      </Form.Group>
+        <Form.Group controlId="middle-name-input">
+          <Form.Label>Middle Name</Form.Label>
+          <Form.Control defaultValue={(name.mName) ? name.mName : ''}/>
+        </Form.Group>
 
-      <Form.Group controlId="last-name-input">
-        <Form.Label>Last Name<span className='required-asterisk'>*</span></Form.Label>
-        <Form.Control required defaultValue={name.lName}/>
-      </Form.Group>
+        <Form.Group controlId="last-name-input">
+          <Form.Label>Last Name<span className='required-asterisk'>*</span></Form.Label>
+          <Form.Control required defaultValue={name.lName}/>
+        </Form.Group>
 
-      <Form.Group controlId="date-of-birth-input">
-        <Form.Label>Date Of Birth<span className='required-asterisk'>*</span></Form.Label>
-        <Form.Control type='date' required defaultValue={convertDateToHtmlInput(dateOfBirth)}/>
-      </Form.Group>
+        <Form.Group controlId="date-of-birth-input">
+          <Form.Label>Date Of Birth<span className='required-asterisk'>*</span></Form.Label>
+          <Form.Control type='date' required defaultValue={convertDateToHtmlInput(dateOfBirth)}/>
+        </Form.Group>
 
-      <Form.Group controlId="date-of-employment-input">
-        <Form.Label>Date Of Employment<span className='required-asterisk'>*</span></Form.Label>
-        <Form.Control type='date' required defaultValue={convertDateToHtmlInput(dateOfEmployment)}/>
-      </Form.Group>
+        <Form.Group controlId="date-of-employment-input">
+          <Form.Label>Date Of Employment<span className='required-asterisk'>*</span></Form.Label>
+          <Form.Control type='date' required defaultValue={convertDateToHtmlInput(dateOfEmployment)}/>
+        </Form.Group>
 
-    </Form>
+      </Form>
 
-    <Modal.Footer>
-      <Button variant='secondary' onClick={() => cancelModal()}>Cancel</Button>
-      <Button variant='primary' onClick={submitHandler}>Save Changes</Button>
-    </Modal.Footer>
+      <Modal.Footer>
+        <Button variant='secondary' onClick={() => cancelModal()}>Cancel</Button>
+        <Button variant='primary' onClick={submitHandler}>Save Changes</Button>
+      </Modal.Footer>
 
-  </Modal.Dialog>
-
+    </Modal.Dialog>
+  </div>
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeProfileForm);

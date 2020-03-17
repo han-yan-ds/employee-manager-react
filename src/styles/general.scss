@@ -36,6 +36,12 @@ th {
   width: 90%;
 }
 
+.modal-parent {
+  position: fixed !important;
+  width: 70%;
+  z-index: 9999;
+}
+
 #add-employee-button {
   border-radius: 1000px;
   margin-left: 6px;
