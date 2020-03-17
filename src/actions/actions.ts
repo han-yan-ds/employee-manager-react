@@ -51,3 +51,10 @@ export const hideProfileModal = (): Action => (
     value: null
   }
 )
+
+export const profileFormCheck = (isChecked: boolean): Action => (
+  {
+    type: 'CHECK_PROFILE_FORM',
+    value: isChecked
+  }
+)

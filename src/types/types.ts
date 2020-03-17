@@ -23,6 +23,7 @@ export type State = {
   isLoggedIn: boolean;
   showProfileId: string | null;
   showLoginFailure: boolean;
+  profileFormChecked: boolean;
 }
 
 export type DatabaseEmployee = {
