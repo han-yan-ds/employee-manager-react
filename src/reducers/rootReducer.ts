@@ -4,7 +4,8 @@ import {
   employeeFilterKeyStatusReducer,
   isLoggedInReducer,
   profileModalReducer,
-  showLoginFailureReducer
+  showLoginFailureReducer,
+  profileFormCheckedReducer,
 } from './reducers';
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   employeeFilterKeyStatus: employeeFilterKeyStatusReducer,
   isLoggedIn: isLoggedInReducer,
   showProfileId: profileModalReducer,
-  showLoginFailure: showLoginFailureReducer
+  showLoginFailure: showLoginFailureReducer,
+  profileFormChecked: profileFormCheckedReducer
 });

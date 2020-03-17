@@ -1,4 +1,4 @@
-import {Date, DatabaseEmployee} from '../types/types';
+import {Date, DatabaseEmployee, DatabaseEmployeePatch, DatabaseEmployeePost} from '../types/types';
 import Employee from '../types/Employee';
 
 export const getEmployeeById = (
@@ -48,4 +48,12 @@ export const convertDatabaseEmployeeToEmployeeObject = (record: DatabaseEmployee
     convertDateStrToDate(doe.split('T')[0]),
     active
   )
+}
+
+export const validateProfileForm = (profileForm: DatabaseEmployeePatch | DatabaseEmployeePost): boolean => {
+  /**
+   * validates the profile form so firstname, lastname, dob, and doe ALL have to be valid
+   */
+  const {firstname, lastname, dob, doe} = profileForm;
+  return [firstname, lastname, dob, doe].every((field) => field as unknown as boolean);
 }

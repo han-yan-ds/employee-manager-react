@@ -50,3 +50,12 @@ export const profileModalReducer = (defValue = null, action: Action): string | n
       return defValue;
   }
 }
+
+export const profileFormCheckedReducer = (defValue = false, action: Action): boolean => {
+  switch (action.type) {
+    case 'CHECK_PROFILE_FORM':
+      return action.value;
+    default:
+      return defValue;
+  }
+}
