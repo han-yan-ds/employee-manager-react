@@ -2,30 +2,48 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Employee from '../../types/Employee';
 import {DatabaseEmployeePatch, DatabaseEmployeePost} from '../../types/types';
-import {convertDateToHtmlInput, getInputValueById} from '../../util/util';
+import {convertDateToHtmlInput, getInputValueById, validateProfileForm } from '../../util/util';
 import {BLANKEMPLOYEE} from '../../util/initialState';
-import {hideProfileModal} from '../../actions/actions';
+import {hideProfileModal, profileFormCheck} from '../../actions/actions';
 import {Modal, Button, Form} from 'react-bootstrap';
 import '../../styles/general.scss';
 import { updateEmployeeList, updateEmployeeInfo, addEmployee } from '../../util/fetches';
 
+function mapStateToProps(st: State) {
+  const {profileFormChecked} = st;
+  return {profileFormChecked};
+}
+
 function mapDispatchToProps(dispatch: Function) {
   return {
-    cancelModal: () => dispatch(hideProfileModal()),
+    cancelModal: () => {
+      dispatch(hideProfileModal());
+      dispatch(profileFormCheck(false)); // reset form validation to hide validation
+    },
     updateProfile: async (updatedProfile: DatabaseEmployeePatch) => {
-      await updateEmployeeInfo(updatedProfile);
-      await updateEmployeeList(dispatch);
+      if (validateProfileForm(updatedProfile)) {
+        await updateEmployeeInfo(updatedProfile);
+        await updateEmployeeList(dispatch);
+        dispatch(hideProfileModal());
+      } else {
+        dispatch(profileFormCheck(true));
+      }
     },
     addProfile: async (newProfile: DatabaseEmployeePost) => {
-      await addEmployee(newProfile);
-      await updateEmployeeList(dispatch);
+      if (validateProfileForm(newProfile)) {
+        await addEmployee(newProfile);
+        await updateEmployeeList(dispatch);
+        dispatch(hideProfileModal());
+      } else {
+        dispatch(profileFormCheck(true));
+      }
     }
   }
 }
 
 const EmployeeProfileForm = (
-  {employee, cancelModal, updateProfile, addProfile}: 
-  {employee: Employee | null, cancelModal: Function, updateProfile: Function, addProfile: Function}
+  {employee, cancelModal, updateProfile, addProfile, profileFormChecked}: 
+  {employee: Employee | null, cancelModal: Function, updateProfile: Function, addProfile: Function, profileFormChecked: boolean}
   ) => {
   
   const {name, dateOfBirth, dateOfEmployment} = (employee) ? employee : BLANKEMPLOYEE
@@ -56,7 +74,6 @@ const EmployeeProfileForm = (
       }
       addProfile(newProfile);
     }
-    cancelModal();
   }
 
   return <Modal.Dialog>
@@ -65,7 +82,7 @@ const EmployeeProfileForm = (
       <Modal.Title>Edit Profile</Modal.Title>
     </Modal.Header>
 
-    <Form>
+    <Form noValidate validated={profileFormChecked}>
 
       <Form.Group controlId="first-name-input">
         <Form.Label>First Name<span className='required-asterisk'>*</span></Form.Label>
@@ -74,7 +91,7 @@ const EmployeeProfileForm = (
 
       <Form.Group controlId="middle-name-input">
         <Form.Label>Middle Name</Form.Label>
-        <Form.Control required defaultValue={(name.mName) ? name.mName : ''}/>
+        <Form.Control defaultValue={(name.mName) ? name.mName : ''}/>
       </Form.Group>
 
       <Form.Group controlId="last-name-input">
@@ -103,4 +120,4 @@ const EmployeeProfileForm = (
 
 }
 
-export default connect(null, mapDispatchToProps)(EmployeeProfileForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeProfileForm);
