@@ -31,8 +31,8 @@ const App = (
   ) => (
   <React.Fragment>
     <Header/>
-    <EmployeeList/>
     {renderProfileForm(employeeList, showProfileId)}
+    <EmployeeList/>
   </React.Fragment>
 );
 
